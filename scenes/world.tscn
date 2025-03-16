@@ -1,3 +1,43 @@
-[gd_scene format=3 uid="uid://dqgix4u0juefq"]
+[gd_scene load_steps=3 format=3 uid="uid://dqgix4u0juefq"]
+
+[ext_resource type="Material" uid="uid://d0g02nfjb3c08" path="res://materials/dirt.tres" id="1_nnsk1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e5uuo"]
+albedo_color = Color(0.00400801, 0.238669, 0, 1)
 
 [node name="World" type="Node3D"]
+
+[node name="Floor" type="CSGBox3D" parent="."]
+use_collision = true
+size = Vector3(100, 1, 100)
+material = SubResource("StandardMaterial3D_e5uuo")
+
+[node name="Cube" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+size = Vector3(2, 2, 2)
+material = ExtResource("1_nnsk1")
+
+[node name="Cube2" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, 0)
+size = Vector3(2, 2, 2)
+material = ExtResource("1_nnsk1")
+
+[node name="Cube3" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.5, 0)
+size = Vector3(2, 2, 2)
+material = ExtResource("1_nnsk1")
+
+[node name="Cube4" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3.5, 0)
+size = Vector3(2, 2, 2)
+material = ExtResource("1_nnsk1")
+
+[node name="Cube5" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.5, 5)
+size = Vector3(2, 2, 2)
+material = ExtResource("1_nnsk1")
+
+[node name="Cube6" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.5, 7)
+size = Vector3(2, 2, 2)
+material = ExtResource("1_nnsk1")
