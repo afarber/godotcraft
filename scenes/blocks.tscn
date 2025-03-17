@@ -1,37 +1,58 @@
-[gd_scene load_steps=6 format=3 uid="uid://5ver7jccjhcr"]
+[gd_scene load_steps=19 format=3 uid="uid://5ver7jccjhcr"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_6l7ab"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wv7cx"]
-albedo_color = Color(0.0627451, 0.364706, 0, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_6l7ab"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="BoxMesh" id="BoxMesh_giubl"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3jd7w"]
-albedo_color = Color(0.298039, 0.101961, 0.0392157, 1)
+[ext_resource type="PackedScene" uid="uid://b1ouhr4vmn7f3" path="res://models/Block_Blank.gltf" id="1_ic3an"]
+[ext_resource type="PackedScene" uid="uid://bkq8rlb3ut40w" path="res://models/Block_Square.gltf" id="2_s0i7d"]
+[ext_resource type="PackedScene" uid="uid://b5vija65sue22" path="res://models/Bricks_Dark.gltf" id="3_yfapm"]
+[ext_resource type="PackedScene" uid="uid://cwfdojrceewrb" path="res://models/Bricks_Grey.gltf" id="4_m64mq"]
+[ext_resource type="PackedScene" uid="uid://bvpwin2xk0c2b" path="res://models/Bricks_Red.gltf" id="5_03jfd"]
+[ext_resource type="PackedScene" uid="uid://dmdh08g5i7ukb" path="res://models/Bricks_Yellow.gltf" id="6_wrnuw"]
+[ext_resource type="PackedScene" uid="uid://brsl601v8e0ce" path="res://models/Coal.gltf" id="7_gl5s0"]
+[ext_resource type="PackedScene" uid="uid://bx4venytabqr7" path="res://models/Diamond.gltf" id="8_s5mrl"]
+[ext_resource type="PackedScene" uid="uid://chfaxx7j6xt16" path="res://models/Dirt.gltf" id="9_fcfn4"]
+[ext_resource type="PackedScene" uid="uid://bv08nmxtpl0ls" path="res://models/Exclamation.gltf" id="10_cny3s"]
+[ext_resource type="PackedScene" uid="uid://i6icc84dxq20" path="res://models/Grass.gltf" id="11_4134y"]
+[ext_resource type="PackedScene" uid="uid://6nq63bkqkedy" path="res://models/Ice.gltf" id="12_keoep"]
+[ext_resource type="PackedScene" uid="uid://y4r3wm5c2vih" path="res://models/Leaves.gltf" id="13_xputf"]
+[ext_resource type="PackedScene" uid="uid://cc16dhjh7q2e5" path="res://models/QuestionMark.gltf" id="14_wc0x4"]
+[ext_resource type="PackedScene" uid="uid://37i0gc83xrvy" path="res://models/Snow.gltf" id="15_p2h4m"]
+[ext_resource type="PackedScene" uid="uid://beg52aierjpcq" path="res://models/Stone.gltf" id="16_a6x4e"]
+[ext_resource type="PackedScene" uid="uid://d3nvsgd65op1w" path="res://models/Wood.gltf" id="17_onrx3"]
+[ext_resource type="PackedScene" uid="uid://dphpu34innlkl" path="res://models/WoodPlanks.gltf" id="18_j2u7o"]
 
 [node name="Blocks" type="Node3D"]
 
-[node name="Grass" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_6l7ab")
-surface_material_override/0 = SubResource("StandardMaterial3D_wv7cx")
+[node name="Block_Blank2" parent="." instance=ExtResource("1_ic3an")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Grass"]
+[node name="Block_Square2" parent="." instance=ExtResource("2_s0i7d")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Grass/StaticBody3D"]
-shape = SubResource("BoxShape3D_6l7ab")
+[node name="Bricks_Dark2" parent="." instance=ExtResource("3_yfapm")]
 
-[node name="Dirt" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
-mesh = SubResource("BoxMesh_giubl")
-surface_material_override/0 = SubResource("StandardMaterial3D_3jd7w")
+[node name="Bricks_Grey2" parent="." instance=ExtResource("4_m64mq")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Dirt"]
+[node name="Bricks_Red2" parent="." instance=ExtResource("5_03jfd")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Dirt/StaticBody3D"]
-shape = SubResource("BoxShape3D_6l7ab")
+[node name="Bricks_Yellow2" parent="." instance=ExtResource("6_wrnuw")]
+
+[node name="Coal2" parent="." instance=ExtResource("7_gl5s0")]
+
+[node name="Diamond2" parent="." instance=ExtResource("8_s5mrl")]
+
+[node name="Dirt2" parent="." instance=ExtResource("9_fcfn4")]
+
+[node name="Exclamation2" parent="." instance=ExtResource("10_cny3s")]
+
+[node name="Grass2" parent="." instance=ExtResource("11_4134y")]
+
+[node name="Ice2" parent="." instance=ExtResource("12_keoep")]
+
+[node name="Leaves2" parent="." instance=ExtResource("13_xputf")]
+
+[node name="QuestionMark2" parent="." instance=ExtResource("14_wc0x4")]
+
+[node name="Snow2" parent="." instance=ExtResource("15_p2h4m")]
+
+[node name="Stone2" parent="." instance=ExtResource("16_a6x4e")]
+
+[node name="Wood2" parent="." instance=ExtResource("17_onrx3")]
+
+[node name="WoodPlanks2" parent="." instance=ExtResource("18_j2u7o")]
