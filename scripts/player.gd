@@ -1,9 +1,12 @@
 extends CharacterBody3D
 
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+const SPEED = 8.0
+const JUMP_VELOCITY = 12.0
+const GRAVITY_FACTOR = 2.5
 const SENSITIVITY = 0.002
+
+@onready var camera_3d: Camera3D = $Camera3D
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -11,12 +14,13 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		rotation.y = rotation.y - event.relative.x * SENSITIVITY
-		# TODO move camera up/down
+		camera_3d.rotation.x = camera_3d.rotation.x - event.relative.y * SENSITIVITY
+		camera_3d.rotation.x = clamp(camera_3d.rotation.x, deg_to_rad(-70), deg_to_rad(80))
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
-		velocity += get_gravity() * delta
+		velocity += GRAVITY_FACTOR * get_gravity() * delta
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
