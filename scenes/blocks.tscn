@@ -728,69 +728,86 @@ mesh = SubResource("ArrayMesh_i786v")
 skeleton = NodePath("")
 
 [node name="Block_Square" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
 mesh = SubResource("ArrayMesh_uwwgj")
 skeleton = NodePath("")
 
 [node name="Bricks_Dark" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 mesh = SubResource("ArrayMesh_4by61")
 skeleton = NodePath("")
 
 [node name="Bricks_Grey" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 0)
 mesh = SubResource("ArrayMesh_04b7u")
 skeleton = NodePath("")
 
 [node name="Bricks_Red" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
 mesh = SubResource("ArrayMesh_lsnnf")
 skeleton = NodePath("")
 
 [node name="Bricks_Yellow" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
 mesh = SubResource("ArrayMesh_70jw8")
 skeleton = NodePath("")
 
 [node name="Coal" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 0)
 mesh = SubResource("ArrayMesh_t2q78")
 skeleton = NodePath("")
 
 [node name="Diamond" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, 0)
 mesh = SubResource("ArrayMesh_i3hdp")
 skeleton = NodePath("")
 
 [node name="Dirt" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, 0)
 mesh = SubResource("ArrayMesh_w2br2")
 skeleton = NodePath("")
 
 [node name="Exclamation" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 0, 0)
 mesh = SubResource("ArrayMesh_yu37n")
 skeleton = NodePath("")
 
 [node name="Grass" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 0)
 mesh = SubResource("ArrayMesh_l3c5l")
 skeleton = NodePath("")
 
 [node name="Ice" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0, 0)
 mesh = SubResource("ArrayMesh_hg7da")
 skeleton = NodePath("")
 
 [node name="Leaves" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0, 0)
 mesh = SubResource("ArrayMesh_vol6k")
 skeleton = NodePath("")
 
 [node name="QuestionMark" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 0, 0)
 mesh = SubResource("ArrayMesh_kw4xh")
 skeleton = NodePath("")
 
 [node name="Snow" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 0, 0)
 mesh = SubResource("ArrayMesh_w8fap")
 skeleton = NodePath("")
 
 [node name="Stone" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, 0)
 mesh = SubResource("ArrayMesh_8e7nc")
 skeleton = NodePath("")
 
 [node name="Wood" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 0, 0)
 mesh = SubResource("ArrayMesh_jjaxq")
 skeleton = NodePath("")
 
 [node name="WoodPlanks" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 0, 0)
 mesh = SubResource("ArrayMesh_y7lbs")
 skeleton = NodePath("")
