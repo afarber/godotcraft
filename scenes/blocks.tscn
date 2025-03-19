@@ -1,23 +1,23 @@
-[gd_scene load_steps=73 format=4 uid="uid://5ver7jccjhcr"]
+[gd_scene load_steps=91 format=4 uid="uid://5ver7jccjhcr"]
 
-[ext_resource type="Texture2D" uid="uid://di464fj7kny4r" path="res://models/Block_Blank_Blocks_PixelArt.png" id="1_ic3an"]
-[ext_resource type="Texture2D" uid="uid://bpr324djc0p2f" path="res://models/Block_Square_Blocks_PixelArt.png" id="2_s0i7d"]
-[ext_resource type="Texture2D" uid="uid://ygr8q80toyx8" path="res://models/Bricks_Dark_Blocks_PixelArt.png" id="3_yfapm"]
-[ext_resource type="Texture2D" uid="uid://b37t57dh1t2ct" path="res://models/Bricks_Grey_Blocks_PixelArt.png" id="4_m64mq"]
-[ext_resource type="Texture2D" uid="uid://bjya30qyffrbj" path="res://models/Bricks_Red_Blocks_PixelArt.png" id="5_03jfd"]
-[ext_resource type="Texture2D" uid="uid://cc5egnhulkbiw" path="res://models/Bricks_Yellow_Blocks_PixelArt.png" id="6_wrnuw"]
-[ext_resource type="Texture2D" uid="uid://dlrwnnlawjchg" path="res://models/Coal_Blocks_PixelArt.png" id="7_gl5s0"]
-[ext_resource type="Texture2D" uid="uid://b8yyc6twlse45" path="res://models/Diamond_Blocks_PixelArt.png" id="8_s5mrl"]
-[ext_resource type="Texture2D" uid="uid://ybno1354mjmo" path="res://models/Dirt_Blocks_PixelArt.png" id="9_fcfn4"]
-[ext_resource type="Texture2D" uid="uid://c3w4cefhebe7m" path="res://models/Exclamation_Blocks_PixelArt.png" id="10_cny3s"]
-[ext_resource type="Texture2D" uid="uid://dseyuaqho38eb" path="res://models/Grass_Blocks_PixelArt.png" id="11_4134y"]
-[ext_resource type="Texture2D" uid="uid://bnptetqfjim" path="res://models/Ice_Blocks_PixelArt.png" id="12_keoep"]
-[ext_resource type="Texture2D" uid="uid://cmqxaq3tfkj20" path="res://models/Leaves_Blocks_PixelArt.png" id="13_xputf"]
-[ext_resource type="Texture2D" uid="uid://cjux3vcp5qaun" path="res://models/QuestionMark_Blocks_PixelArt.png" id="14_wc0x4"]
-[ext_resource type="Texture2D" uid="uid://b06hclev7agmm" path="res://models/Snow_Blocks_PixelArt.png" id="15_p2h4m"]
-[ext_resource type="Texture2D" uid="uid://befij4leiousc" path="res://models/Stone_Blocks_PixelArt.png" id="16_a6x4e"]
-[ext_resource type="Texture2D" uid="uid://dhtyhue3ek2qs" path="res://models/Wood_Blocks_PixelArt.png" id="17_onrx3"]
-[ext_resource type="Texture2D" uid="uid://dwiq5rw71yrpb" path="res://models/WoodPlanks_Blocks_PixelArt.png" id="18_j2u7o"]
+[ext_resource type="Texture2D" path="res://models/Block_Blank_Blocks_PixelArt.png" id="1_ic3an"]
+[ext_resource type="Texture2D" path="res://models/Block_Square_Blocks_PixelArt.png" id="2_s0i7d"]
+[ext_resource type="Texture2D" path="res://models/Bricks_Dark_Blocks_PixelArt.png" id="3_yfapm"]
+[ext_resource type="Texture2D" path="res://models/Bricks_Grey_Blocks_PixelArt.png" id="4_m64mq"]
+[ext_resource type="Texture2D" path="res://models/Bricks_Red_Blocks_PixelArt.png" id="5_03jfd"]
+[ext_resource type="Texture2D" path="res://models/Bricks_Yellow_Blocks_PixelArt.png" id="6_wrnuw"]
+[ext_resource type="Texture2D" path="res://models/Coal_Blocks_PixelArt.png" id="7_gl5s0"]
+[ext_resource type="Texture2D" path="res://models/Diamond_Blocks_PixelArt.png" id="8_s5mrl"]
+[ext_resource type="Texture2D" path="res://models/Dirt_Blocks_PixelArt.png" id="9_fcfn4"]
+[ext_resource type="Texture2D" path="res://models/Exclamation_Blocks_PixelArt.png" id="10_cny3s"]
+[ext_resource type="Texture2D" path="res://models/Grass_Blocks_PixelArt.png" id="11_4134y"]
+[ext_resource type="Texture2D" path="res://models/Ice_Blocks_PixelArt.png" id="12_keoep"]
+[ext_resource type="Texture2D" path="res://models/Leaves_Blocks_PixelArt.png" id="13_xputf"]
+[ext_resource type="Texture2D" path="res://models/QuestionMark_Blocks_PixelArt.png" id="14_wc0x4"]
+[ext_resource type="Texture2D" path="res://models/Snow_Blocks_PixelArt.png" id="15_p2h4m"]
+[ext_resource type="Texture2D" path="res://models/Stone_Blocks_PixelArt.png" id="16_a6x4e"]
+[ext_resource type="Texture2D" path="res://models/Wood_Blocks_PixelArt.png" id="17_onrx3"]
+[ext_resource type="Texture2D" path="res://models/WoodPlanks_Blocks_PixelArt.png" id="18_j2u7o"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v4dsl"]
 resource_name = "Blocks_Pixelart"
@@ -58,6 +58,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_cxyqu")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ic3an"]
+size = Vector3(2, 2, 2)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fvgs8"]
 resource_name = "Blocks_Pixelart"
 cull_mode = 2
@@ -96,6 +99,9 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_pp14q")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s0i7d"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mkyrj"]
 resource_name = "Blocks_Pixelart"
@@ -136,6 +142,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_a7bxh")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_yfapm"]
+size = Vector3(2, 2, 2)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hi7au"]
 resource_name = "Blocks_Pixelart"
 cull_mode = 2
@@ -174,6 +183,9 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_o4ads")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m64mq"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f4o0y"]
 resource_name = "Blocks_Pixelart"
@@ -214,6 +226,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_lxow4")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_03jfd"]
+size = Vector3(2, 2, 2)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wf6wh"]
 resource_name = "Blocks_Pixelart"
 cull_mode = 2
@@ -252,6 +267,9 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_u22t0")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wrnuw"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ql8hn"]
 resource_name = "Blocks_Pixelart"
@@ -292,6 +310,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_4n373")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_gl5s0"]
+size = Vector3(2, 2, 2)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pht2f"]
 resource_name = "Blocks_Pixelart"
 cull_mode = 2
@@ -330,6 +351,9 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_bwtog")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s5mrl"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dpuoh"]
 resource_name = "Blocks_Pixelart"
@@ -370,6 +394,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_7r20x")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_fcfn4"]
+size = Vector3(2, 2, 2)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_10v3d"]
 resource_name = "Blocks_Pixelart"
 cull_mode = 2
@@ -408,6 +435,9 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_xd5f7")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cny3s"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wvaye"]
 resource_name = "Blocks_Pixelart"
@@ -448,6 +478,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_n4l0g")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_4134y"]
+size = Vector3(2, 2, 2)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5yocp"]
 resource_name = "Blocks_Pixelart"
 cull_mode = 2
@@ -486,6 +519,9 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_vf45u")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_keoep"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r37co"]
 resource_name = "Blocks_Pixelart"
@@ -526,6 +562,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_gqdq5")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_xputf"]
+size = Vector3(2, 2, 2)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fmwsl"]
 resource_name = "Blocks_Pixelart"
 cull_mode = 2
@@ -564,6 +603,9 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_fcyyu")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wc0x4"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4pr2k"]
 resource_name = "Blocks_Pixelart"
@@ -604,6 +646,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_gjsii")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_p2h4m"]
+size = Vector3(2, 2, 2)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ucch7"]
 resource_name = "Blocks_Pixelart"
 cull_mode = 2
@@ -642,6 +687,9 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_djqj7")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a6x4e"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tr2ja"]
 resource_name = "Blocks_Pixelart"
@@ -682,6 +730,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_sxr8v")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_onrx3"]
+size = Vector3(2, 2, 2)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0v4qg"]
 resource_name = "Blocks_Pixelart"
 cull_mode = 2
@@ -721,93 +772,186 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_jvm4l")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_j2u7o"]
+size = Vector3(2, 2, 2)
+
 [node name="Blocks" type="Node3D"]
 
 [node name="Block_Blank" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_i786v")
 skeleton = NodePath("")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="Block_Blank"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Block_Blank/StaticBody3D"]
+shape = SubResource("BoxShape3D_ic3an")
+
 [node name="Block_Square" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
 mesh = SubResource("ArrayMesh_uwwgj")
 skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Block_Square"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Block_Square/StaticBody3D"]
+shape = SubResource("BoxShape3D_s0i7d")
 
 [node name="Bricks_Dark" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 mesh = SubResource("ArrayMesh_4by61")
 skeleton = NodePath("")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="Bricks_Dark"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bricks_Dark/StaticBody3D"]
+shape = SubResource("BoxShape3D_yfapm")
+
 [node name="Bricks_Grey" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 0)
 mesh = SubResource("ArrayMesh_04b7u")
 skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Bricks_Grey"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bricks_Grey/StaticBody3D"]
+shape = SubResource("BoxShape3D_m64mq")
 
 [node name="Bricks_Red" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
 mesh = SubResource("ArrayMesh_lsnnf")
 skeleton = NodePath("")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="Bricks_Red"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bricks_Red/StaticBody3D"]
+shape = SubResource("BoxShape3D_03jfd")
+
 [node name="Bricks_Yellow" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
 mesh = SubResource("ArrayMesh_70jw8")
 skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Bricks_Yellow"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bricks_Yellow/StaticBody3D"]
+shape = SubResource("BoxShape3D_wrnuw")
 
 [node name="Coal" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 0)
 mesh = SubResource("ArrayMesh_t2q78")
 skeleton = NodePath("")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="Coal"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Coal/StaticBody3D"]
+shape = SubResource("BoxShape3D_gl5s0")
+
 [node name="Diamond" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, 0)
 mesh = SubResource("ArrayMesh_i3hdp")
 skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Diamond"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Diamond/StaticBody3D"]
+shape = SubResource("BoxShape3D_s5mrl")
 
 [node name="Dirt" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, 0)
 mesh = SubResource("ArrayMesh_w2br2")
 skeleton = NodePath("")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="Dirt"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dirt/StaticBody3D"]
+shape = SubResource("BoxShape3D_fcfn4")
+
 [node name="Exclamation" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 0, 0)
 mesh = SubResource("ArrayMesh_yu37n")
 skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Exclamation"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Exclamation/StaticBody3D"]
+shape = SubResource("BoxShape3D_cny3s")
 
 [node name="Grass" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 0)
 mesh = SubResource("ArrayMesh_l3c5l")
 skeleton = NodePath("")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="Grass"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Grass/StaticBody3D"]
+shape = SubResource("BoxShape3D_4134y")
+
 [node name="Ice" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0, 0)
 mesh = SubResource("ArrayMesh_hg7da")
 skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ice"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ice/StaticBody3D"]
+shape = SubResource("BoxShape3D_keoep")
 
 [node name="Leaves" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0, 0)
 mesh = SubResource("ArrayMesh_vol6k")
 skeleton = NodePath("")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="Leaves"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Leaves/StaticBody3D"]
+shape = SubResource("BoxShape3D_xputf")
+
 [node name="QuestionMark" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 0, 0)
 mesh = SubResource("ArrayMesh_kw4xh")
 skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="QuestionMark"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="QuestionMark/StaticBody3D"]
+shape = SubResource("BoxShape3D_wc0x4")
 
 [node name="Snow" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 0, 0)
 mesh = SubResource("ArrayMesh_w8fap")
 skeleton = NodePath("")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="Snow"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Snow/StaticBody3D"]
+shape = SubResource("BoxShape3D_p2h4m")
+
 [node name="Stone" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, 0)
 mesh = SubResource("ArrayMesh_8e7nc")
 skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Stone"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stone/StaticBody3D"]
+shape = SubResource("BoxShape3D_a6x4e")
 
 [node name="Wood" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 0, 0)
 mesh = SubResource("ArrayMesh_jjaxq")
 skeleton = NodePath("")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="Wood"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wood/StaticBody3D"]
+shape = SubResource("BoxShape3D_onrx3")
+
 [node name="WoodPlanks" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 0, 0)
 mesh = SubResource("ArrayMesh_y7lbs")
 skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="WoodPlanks"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WoodPlanks/StaticBody3D"]
+shape = SubResource("BoxShape3D_j2u7o")
