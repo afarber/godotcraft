@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bax8tdybiejse"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bjy17"]
+load_path = "res://.godot/imported/WoodPlanks_Blocks_PixelArt.png-68bd0c49f3b52b27d00404a1e138dca0.s3tc.ctex"
+
+[resource]
+resource_name = "Blocks_Pixelart"
+cull_mode = 2
+albedo_texture = SubResource("CompressedTexture2D_bjy17")
+texture_filter = 2

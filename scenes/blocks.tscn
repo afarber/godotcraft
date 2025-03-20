@@ -1,30 +1,6 @@
-[gd_scene load_steps=91 format=4 uid="uid://5ver7jccjhcr"]
+[gd_scene load_steps=56 format=4 uid="uid://5ver7jccjhcr"]
 
-[ext_resource type="Texture2D" path="res://models/Block_Blank_Blocks_PixelArt.png" id="1_ic3an"]
-[ext_resource type="Texture2D" path="res://models/Block_Square_Blocks_PixelArt.png" id="2_s0i7d"]
-[ext_resource type="Texture2D" path="res://models/Bricks_Dark_Blocks_PixelArt.png" id="3_yfapm"]
-[ext_resource type="Texture2D" path="res://models/Bricks_Grey_Blocks_PixelArt.png" id="4_m64mq"]
-[ext_resource type="Texture2D" path="res://models/Bricks_Red_Blocks_PixelArt.png" id="5_03jfd"]
-[ext_resource type="Texture2D" path="res://models/Bricks_Yellow_Blocks_PixelArt.png" id="6_wrnuw"]
-[ext_resource type="Texture2D" path="res://models/Coal_Blocks_PixelArt.png" id="7_gl5s0"]
-[ext_resource type="Texture2D" path="res://models/Diamond_Blocks_PixelArt.png" id="8_s5mrl"]
-[ext_resource type="Texture2D" path="res://models/Dirt_Blocks_PixelArt.png" id="9_fcfn4"]
-[ext_resource type="Texture2D" path="res://models/Exclamation_Blocks_PixelArt.png" id="10_cny3s"]
-[ext_resource type="Texture2D" path="res://models/Grass_Blocks_PixelArt.png" id="11_4134y"]
-[ext_resource type="Texture2D" path="res://models/Ice_Blocks_PixelArt.png" id="12_keoep"]
-[ext_resource type="Texture2D" path="res://models/Leaves_Blocks_PixelArt.png" id="13_xputf"]
-[ext_resource type="Texture2D" path="res://models/QuestionMark_Blocks_PixelArt.png" id="14_wc0x4"]
-[ext_resource type="Texture2D" path="res://models/Snow_Blocks_PixelArt.png" id="15_p2h4m"]
-[ext_resource type="Texture2D" path="res://models/Stone_Blocks_PixelArt.png" id="16_a6x4e"]
-[ext_resource type="Texture2D" path="res://models/Wood_Blocks_PixelArt.png" id="17_onrx3"]
-[ext_resource type="Texture2D" path="res://models/WoodPlanks_Blocks_PixelArt.png" id="18_j2u7o"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v4dsl"]
-resource_name = "Blocks_Pixelart"
-cull_mode = 2
-albedo_texture = ExtResource("1_ic3an")
-roughness = 0.5
-texture_filter = 2
+[ext_resource type="Material" uid="uid://bax8tdybiejse" path="res://resources/blocks_material.tres" id="17_w60hs"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_cxyqu"]
 _surfaces = [{
@@ -48,7 +24,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
-"material": SubResource("StandardMaterial3D_v4dsl"),
+"material": ExtResource("17_w60hs"),
 "name": "Blocks_Pixelart",
 "primitive": 3,
 "uv_scale": Vector4(0.394393, 2.00118, 0, 0),
@@ -60,13 +36,6 @@ shadow_mesh = SubResource("ArrayMesh_cxyqu")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ic3an"]
 size = Vector3(2, 2, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fvgs8"]
-resource_name = "Blocks_Pixelart"
-cull_mode = 2
-albedo_texture = ExtResource("2_s0i7d")
-roughness = 0.5
-texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_pp14q"]
 _surfaces = [{
@@ -90,7 +59,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
-"material": SubResource("StandardMaterial3D_fvgs8"),
+"material": ExtResource("17_w60hs"),
 "name": "Blocks_Pixelart",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -102,13 +71,6 @@ shadow_mesh = SubResource("ArrayMesh_pp14q")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s0i7d"]
 size = Vector3(2, 2, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mkyrj"]
-resource_name = "Blocks_Pixelart"
-cull_mode = 2
-albedo_texture = ExtResource("3_yfapm")
-roughness = 0.5
-texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_a7bxh"]
 _surfaces = [{
@@ -132,7 +94,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
-"material": SubResource("StandardMaterial3D_mkyrj"),
+"material": ExtResource("17_w60hs"),
 "name": "Blocks_Pixelart",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -144,13 +106,6 @@ shadow_mesh = SubResource("ArrayMesh_a7bxh")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yfapm"]
 size = Vector3(2, 2, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hi7au"]
-resource_name = "Blocks_Pixelart"
-cull_mode = 2
-albedo_texture = ExtResource("4_m64mq")
-roughness = 0.5
-texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_o4ads"]
 _surfaces = [{
@@ -174,7 +129,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
-"material": SubResource("StandardMaterial3D_hi7au"),
+"material": ExtResource("17_w60hs"),
 "name": "Blocks_Pixelart",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -186,13 +141,6 @@ shadow_mesh = SubResource("ArrayMesh_o4ads")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m64mq"]
 size = Vector3(2, 2, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f4o0y"]
-resource_name = "Blocks_Pixelart"
-cull_mode = 2
-albedo_texture = ExtResource("5_03jfd")
-roughness = 0.5
-texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_lxow4"]
 _surfaces = [{
@@ -216,7 +164,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
-"material": SubResource("StandardMaterial3D_f4o0y"),
+"material": ExtResource("17_w60hs"),
 "name": "Blocks_Pixelart",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -228,13 +176,6 @@ shadow_mesh = SubResource("ArrayMesh_lxow4")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_03jfd"]
 size = Vector3(2, 2, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wf6wh"]
-resource_name = "Blocks_Pixelart"
-cull_mode = 2
-albedo_texture = ExtResource("6_wrnuw")
-roughness = 0.5
-texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_u22t0"]
 _surfaces = [{
@@ -258,7 +199,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
-"material": SubResource("StandardMaterial3D_wf6wh"),
+"material": ExtResource("17_w60hs"),
 "name": "Blocks_Pixelart",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -270,13 +211,6 @@ shadow_mesh = SubResource("ArrayMesh_u22t0")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wrnuw"]
 size = Vector3(2, 2, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ql8hn"]
-resource_name = "Blocks_Pixelart"
-cull_mode = 2
-albedo_texture = ExtResource("7_gl5s0")
-roughness = 0.5
-texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_4n373"]
 _surfaces = [{
@@ -300,7 +234,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
-"material": SubResource("StandardMaterial3D_ql8hn"),
+"material": ExtResource("17_w60hs"),
 "name": "Blocks_Pixelart",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -312,13 +246,6 @@ shadow_mesh = SubResource("ArrayMesh_4n373")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gl5s0"]
 size = Vector3(2, 2, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pht2f"]
-resource_name = "Blocks_Pixelart"
-cull_mode = 2
-albedo_texture = ExtResource("8_s5mrl")
-roughness = 0.5
-texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_bwtog"]
 _surfaces = [{
@@ -342,7 +269,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
-"material": SubResource("StandardMaterial3D_pht2f"),
+"material": ExtResource("17_w60hs"),
 "name": "Blocks_Pixelart",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -354,13 +281,6 @@ shadow_mesh = SubResource("ArrayMesh_bwtog")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s5mrl"]
 size = Vector3(2, 2, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dpuoh"]
-resource_name = "Blocks_Pixelart"
-cull_mode = 2
-albedo_texture = ExtResource("9_fcfn4")
-roughness = 0.5
-texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_7r20x"]
 _surfaces = [{
@@ -384,7 +304,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
-"material": SubResource("StandardMaterial3D_dpuoh"),
+"material": ExtResource("17_w60hs"),
 "name": "Blocks_Pixelart",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -396,13 +316,6 @@ shadow_mesh = SubResource("ArrayMesh_7r20x")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fcfn4"]
 size = Vector3(2, 2, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_10v3d"]
-resource_name = "Blocks_Pixelart"
-cull_mode = 2
-albedo_texture = ExtResource("10_cny3s")
-roughness = 0.5
-texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_xd5f7"]
 _surfaces = [{
@@ -426,7 +339,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
-"material": SubResource("StandardMaterial3D_10v3d"),
+"material": ExtResource("17_w60hs"),
 "name": "Blocks_Pixelart",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -438,13 +351,6 @@ shadow_mesh = SubResource("ArrayMesh_xd5f7")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cny3s"]
 size = Vector3(2, 2, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wvaye"]
-resource_name = "Blocks_Pixelart"
-cull_mode = 2
-albedo_texture = ExtResource("11_4134y")
-roughness = 0.5
-texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_n4l0g"]
 _surfaces = [{
@@ -468,7 +374,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
-"material": SubResource("StandardMaterial3D_wvaye"),
+"material": ExtResource("17_w60hs"),
 "name": "Blocks_Pixelart",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -480,13 +386,6 @@ shadow_mesh = SubResource("ArrayMesh_n4l0g")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4134y"]
 size = Vector3(2, 2, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5yocp"]
-resource_name = "Blocks_Pixelart"
-cull_mode = 2
-albedo_texture = ExtResource("12_keoep")
-roughness = 0.5
-texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_vf45u"]
 _surfaces = [{
@@ -510,7 +409,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
-"material": SubResource("StandardMaterial3D_5yocp"),
+"material": ExtResource("17_w60hs"),
 "name": "Blocks_Pixelart",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -522,13 +421,6 @@ shadow_mesh = SubResource("ArrayMesh_vf45u")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_keoep"]
 size = Vector3(2, 2, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r37co"]
-resource_name = "Blocks_Pixelart"
-cull_mode = 2
-albedo_texture = ExtResource("13_xputf")
-roughness = 0.5
-texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_gqdq5"]
 _surfaces = [{
@@ -552,7 +444,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
-"material": SubResource("StandardMaterial3D_r37co"),
+"material": ExtResource("17_w60hs"),
 "name": "Blocks_Pixelart",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -564,13 +456,6 @@ shadow_mesh = SubResource("ArrayMesh_gqdq5")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xputf"]
 size = Vector3(2, 2, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fmwsl"]
-resource_name = "Blocks_Pixelart"
-cull_mode = 2
-albedo_texture = ExtResource("14_wc0x4")
-roughness = 0.5
-texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_fcyyu"]
 _surfaces = [{
@@ -594,7 +479,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
-"material": SubResource("StandardMaterial3D_fmwsl"),
+"material": ExtResource("17_w60hs"),
 "name": "Blocks_Pixelart",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -606,13 +491,6 @@ shadow_mesh = SubResource("ArrayMesh_fcyyu")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wc0x4"]
 size = Vector3(2, 2, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4pr2k"]
-resource_name = "Blocks_Pixelart"
-cull_mode = 2
-albedo_texture = ExtResource("15_p2h4m")
-roughness = 0.5
-texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_gjsii"]
 _surfaces = [{
@@ -636,7 +514,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
-"material": SubResource("StandardMaterial3D_4pr2k"),
+"material": ExtResource("17_w60hs"),
 "name": "Blocks_Pixelart",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -648,13 +526,6 @@ shadow_mesh = SubResource("ArrayMesh_gjsii")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p2h4m"]
 size = Vector3(2, 2, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ucch7"]
-resource_name = "Blocks_Pixelart"
-cull_mode = 2
-albedo_texture = ExtResource("16_a6x4e")
-roughness = 0.5
-texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_djqj7"]
 _surfaces = [{
@@ -678,7 +549,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
-"material": SubResource("StandardMaterial3D_ucch7"),
+"material": ExtResource("17_w60hs"),
 "name": "Blocks_Pixelart",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -690,13 +561,6 @@ shadow_mesh = SubResource("ArrayMesh_djqj7")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a6x4e"]
 size = Vector3(2, 2, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tr2ja"]
-resource_name = "Blocks_Pixelart"
-cull_mode = 2
-albedo_texture = ExtResource("17_onrx3")
-roughness = 0.5
-texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_sxr8v"]
 _surfaces = [{
@@ -720,7 +584,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
-"material": SubResource("StandardMaterial3D_tr2ja"),
+"material": ExtResource("17_w60hs"),
 "name": "Blocks_Pixelart",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -732,13 +596,6 @@ shadow_mesh = SubResource("ArrayMesh_sxr8v")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_onrx3"]
 size = Vector3(2, 2, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0v4qg"]
-resource_name = "Blocks_Pixelart"
-cull_mode = 2
-albedo_texture = ExtResource("18_j2u7o")
-roughness = 0.5
-texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_jvm4l"]
 _surfaces = [{
@@ -762,7 +619,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
-"material": SubResource("StandardMaterial3D_0v4qg"),
+"material": ExtResource("17_w60hs"),
 "name": "Blocks_Pixelart",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
