@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dqgix4u0juefq"]
+[gd_scene load_steps=9 format=3 uid="uid://dqgix4u0juefq"]
 
 [ext_resource type="MeshLibrary" uid="uid://dbwvuw0cpt0xx" path="res://resources/blocks_mesh_library.tres" id="2_4wyf3"]
 [ext_resource type="PackedScene" uid="uid://cnqk8sxsy3gtf" path="res://scenes/player.tscn" id="2_rwgxs"]
+[ext_resource type="Shader" uid="uid://bhuv3a2ht6dhv" path="res://shaders/water.gdshader" id="4_k0juu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nnsk1"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -20,13 +21,32 @@ fog_light_color = Color(0.501961, 0.501961, 0.501961, 1)
 fog_density = 0.001
 fog_depth_begin = 50.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rwgxs"]
-transparency = 1
-albedo_color = Color(0, 0, 1, 0.768627)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4wyf3"]
+render_priority = 0
+shader = ExtResource("4_k0juu")
+shader_parameter/WATER_COL = Color(0.04, 0.38, 0.88, 1)
+shader_parameter/WATER2_COL = Color(0.04, 0.35, 0.78, 1)
+shader_parameter/FOAM_COL = Color(0.8125, 0.9609, 0.9648, 1)
+shader_parameter/distortion_speed = 2.0
+shader_parameter/tile = Vector2(64, 64)
+shader_parameter/wave_speed = 2.0
+shader_parameter/wave_amplitude = 0.5
+shader_parameter/wave_frequency = 1.5
+shader_parameter/time_offset = 0.0
+shader_parameter/water_size = Vector2(128, 128)
+shader_parameter/water_transparency = 0.8
+shader_parameter/water_depth_factor = 0.1
+shader_parameter/foam_width = 0.5
+shader_parameter/foam_edge_softness = 0.05
+shader_parameter/foam_smoothness = 0.03
+shader_parameter/foam_distortion_speed = 0.5
+shader_parameter/foam_distortion_amount = 0.1
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_rwgxs"]
-material = SubResource("StandardMaterial3D_rwgxs")
-size = Vector2(5000, 5000)
+material = SubResource("ShaderMaterial_4wyf3")
+size = Vector2(500, 500)
+subdivide_width = 64
+subdivide_depth = 64
 
 [node name="World" type="Node3D"]
 
