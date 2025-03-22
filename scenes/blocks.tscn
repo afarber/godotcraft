@@ -359,7 +359,6 @@ size = Vector3(2, 2, 2)
 resource_name = "Blocks_Pixelart"
 cull_mode = 2
 albedo_texture = ExtResource("9_fcfn4")
-roughness = 0.5
 texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_jlbtq"]
@@ -443,7 +442,6 @@ size = Vector3(2, 2, 2)
 resource_name = "Blocks_Pixelart"
 cull_mode = 2
 albedo_texture = ExtResource("11_4134y")
-roughness = 0.5
 texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_h6hlv"]
@@ -653,7 +651,6 @@ size = Vector3(2, 2, 2)
 resource_name = "Blocks_Pixelart"
 cull_mode = 2
 albedo_texture = ExtResource("16_a6x4e")
-roughness = 0.5
 texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_erk83"]
