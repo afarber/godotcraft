@@ -18,3 +18,5 @@ mono_crash.*.json
 # Blender specific ignores
 *.blend1
 
+.DS_Store
+
