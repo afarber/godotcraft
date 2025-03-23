@@ -14,5 +14,6 @@ TODO:
 
 Use MIT-licensed [Pocket Godot](https://github.com/lukky-nl/Pocket-Godot) by Lukky
 
-Use 3rd person camera with [Mixamo](https://www.mixamo.com) animations when climbing
+Add a skeleton (use GLB instead of GLTF, because it contains texture?), then add LookAtModifier3D below its Skeleton3D
+
 
