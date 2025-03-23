@@ -1,27 +1,22 @@
 [gd_scene load_steps=9 format=3 uid="uid://dqgix4u0juefq"]
 
+[ext_resource type="Material" uid="uid://m80rmki4fbox" path="res://shaders/night_sky.tres" id="1_k0juu"]
 [ext_resource type="MeshLibrary" uid="uid://dbwvuw0cpt0xx" path="res://resources/blocks_mesh_library.tres" id="2_4wyf3"]
 [ext_resource type="PackedScene" uid="uid://cnqk8sxsy3gtf" path="res://scenes/player.tscn" id="2_rwgxs"]
 [ext_resource type="Shader" uid="uid://bhuv3a2ht6dhv" path="res://shaders/water.gdshader" id="4_k0juu"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4wyf3"]
-sky_top_color = Color(0.389074, 0.537896, 0.976297, 1)
-sky_horizon_color = Color(0.832328, 0.637259, 0.860303, 1)
-sky_curve = 0.117687
+[sub_resource type="Sky" id="Sky_ieg05"]
+sky_material = ExtResource("1_k0juu")
 
-[sub_resource type="Sky" id="Sky_rwgxs"]
-sky_material = SubResource("ProceduralSkyMaterial_4wyf3")
-
-[sub_resource type="Environment" id="Environment_4wyf3"]
+[sub_resource type="Environment" id="Environment_71j4m"]
 background_mode = 2
-sky = SubResource("Sky_rwgxs")
+sky = SubResource("Sky_ieg05")
+ambient_light_source = 2
+ambient_light_color = Color(0.45098, 0.333333, 0.309804, 1)
+ambient_light_energy = 0.5
 tonemap_mode = 2
 glow_enabled = true
-fog_mode = 1
-fog_light_color = Color(0.501961, 0.501961, 0.501961, 1)
-fog_density = 1.0
-fog_sky_affect = 0.3
-fog_depth_begin = 50.0
+glow_bloom = 0.2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4wyf3"]
 render_priority = 0
@@ -53,15 +48,11 @@ subdivide_depth = 64
 [node name="World" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_4wyf3")
+environment = SubResource("Environment_71j4m")
 
-[node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.433013, 0.216506, 0.875, 0.75, 0.625, 0.216506, -0.5, 0.75, -0.433013, 50, 50, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.984196, 0.113116, -0.136249, 0, 0.7694, 0.638767, 0.177085, -0.628672, 0.75724, 0, 0, 0)
 shadow_enabled = true
-directional_shadow_mode = 0
-
-[node name="Player" parent="." instance=ExtResource("2_rwgxs")]
-transform = Transform3D(0.500287, 0, -0.865859, 0, 1, 0, 0.865859, 0, 0.500287, 0, 4, 0)
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("2_4wyf3")
@@ -73,3 +64,6 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 [node name="Water" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.31349, 0)
 mesh = SubResource("PlaneMesh_rwgxs")
+
+[node name="Player" parent="." instance=ExtResource("2_rwgxs")]
+transform = Transform3D(0.500287, 0, -0.865859, 0, 1, 0, 0.865859, 0, 0.500287, 0, 4, 0)
