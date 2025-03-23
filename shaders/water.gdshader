@@ -46,12 +46,12 @@ float noise(vec2 uv) {
 float smooth_noise(vec2 uv) {
     vec2 id = floor(uv);
     vec2 f = fract(uv);
-    
+
     float a = noise(id);
     float b = noise(id + vec2(1.0, 0.0));
     float c = noise(id + vec2(0.0, 1.0));
     float d = noise(id + vec2(1.0, 1.0));
-    
+
     vec2 u = f * f * (3.0 - 2.0 * f);
     return mix(a, b, u.x) + (c - a) * u.y * (1.0 - u.x) + (d - b) * u.x * u.y;
 }
@@ -63,12 +63,12 @@ float calculate_foam(vec2 uv, float depth_diff, float time) {
         smooth_noise(uv * 5.0 + time * foam_distortion_speed) * foam_distortion_amount,
         smooth_noise(uv * 5.0 + 100.0 + time * foam_distortion_speed) * foam_distortion_amount
     );
-    
+
     // Calculate foam based on depth difference and distorted UV
     float foam_shape = smoothstep(0.0, foam_width, abs(depth_diff));
     foam_shape = smoothstep(foam_edge_softness, 0.0, foam_shape);
     foam_shape *= smooth_noise(distorted_uv * 10.0);
-    
+
     return foam_shape;
 }
 
@@ -86,7 +86,7 @@ void vertex() {
     VERTEX.y += wave;
 }
 
-// Circle function for water effects 
+// Circle function for water effects
 float circ(vec2 pos, vec2 c, float s) {
     c = abs(pos - c);
     c = min(c, 1.0 - c);
@@ -206,37 +206,37 @@ vec4 water(vec2 uv, vec3 cdir, float iTime) {
 void fragment() {
     // Calculate basic water effect
     vec4 water_color = water(UV * tile, vec3(0, 1, 0), TIME * distortion_speed);
-    
+
     // Get the depth of the pixel in the scene
     float scene_depth = texture(DEPTH_TEXTURE, SCREEN_UV).r;
-    
+
     // Convert scene depth to view space
     vec3 ndc = vec3(SCREEN_UV * 2.0 - 1.0, scene_depth);
     vec4 view_coords = INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
     view_coords.xyz /= view_coords.w;
     float linear_scene_depth = -view_coords.z;
-    
+
     // Calculate the depth of the water surface in view space
     vec4 water_world_pos = INV_VIEW_MATRIX * vec4(VERTEX, 1.0);
     vec4 water_view_pos = VIEW_MATRIX * water_world_pos;
     float linear_water_depth = -water_view_pos.z;
-    
+
     // Calculate depth difference
     float depth_diff = linear_scene_depth - linear_water_depth;
-    
+
     // Calculate foam
     float foam = calculate_foam(UV, depth_diff, TIME);
-    
+
     // Calculate water opacity based on depth
     float water_opacity = clamp(depth_diff * water_depth_factor, 0.0, 1.0);
-    
+
     // Mix water color with the scene behind it
     vec4 background = texture(SCREEN_TEXTURE, SCREEN_UV);
     vec4 final_color = mix(background, water_color, water_opacity * water_transparency);
-    
+
     // Add foam
     final_color = mix(final_color, FOAM_COL, foam);
-    
+
     // Set final color and alpha
     ALBEDO = final_color.rgb;
     ALPHA = final_color.a;
