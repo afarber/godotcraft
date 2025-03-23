@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dqgix4u0juefq"]
 
-[ext_resource type="Material" uid="uid://m80rmki4fbox" path="res://shaders/night_sky.tres" id="1_k0juu"]
+[ext_resource type="Material" uid="uid://dh6ykun8bv60u" path="res://shaders/day_sky.tres" id="1_k0juu"]
 [ext_resource type="MeshLibrary" uid="uid://dbwvuw0cpt0xx" path="res://resources/blocks_mesh_library.tres" id="2_4wyf3"]
 [ext_resource type="PackedScene" uid="uid://cnqk8sxsy3gtf" path="res://scenes/player.tscn" id="2_rwgxs"]
 [ext_resource type="Shader" uid="uid://bhuv3a2ht6dhv" path="res://shaders/water.gdshader" id="4_k0juu"]
