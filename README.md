@@ -9,3 +9,10 @@ Initially based on [Youtube videos](https://youtube.com/playlist?list=PLQZiuyZoM
 Using CC0-licensed [Cube World Kit](https://quaternius.com/packs/cubeworldkit.html) by Quaternius
 
 Using MIT-licensed [Stylized Sky](https://github.com/gdquest-demos/godot-4-stylized-sky) by GDQuest
+
+TODO:
+
+Use MIT-licensed [Pocket Godot](https://github.com/lukky-nl/Pocket-Godot) by Lukky
+
+Use 3rd person camera with [Mixamo](https://www.mixamo.com) animations when climbing
+
