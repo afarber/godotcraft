@@ -14,6 +14,6 @@ TODO:
 
 Use MIT-licensed [Pocket Godot](https://github.com/lukky-nl/Pocket-Godot) by Lukky
 
-Add a skeleton (use GLB instead of GLTF, because it contains texture?), then add LookAtModifier3D below its Skeleton3D
+Add a skeleton, then add LookAtModifier3D below its Skeleton3D
 
 
