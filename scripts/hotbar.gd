@@ -22,9 +22,36 @@
 
 extends Node3D
 
-@onready var camera_pivot: Node3D = $CameraPivot
+@export var grid_map: GridMap  # Reference to the GridMap
+@export var cube_spacing: float = 2.5  # Spacing between cubes
+@export var selected_index: int = 0  # Default selected item
 
-const ROTATION_SPEED = 2
+var cubes = []  # Stores hotbar cube instances
 
-func _process(delta: float) -> void:
-	camera_pivot.rotation_degrees.y += delta * ROTATION_SPEED
+func _ready():
+	display_hotbar_cubes()
+
+func display_hotbar_cubes():
+	var mesh_lib = grid_map.mesh_library
+	if not mesh_lib:
+		return
+
+	var cube_count = mesh_lib.get_item_count()
+	for i in range(cube_count):
+		var cube_mesh = mesh_lib.get_item_mesh(i)
+		if cube_mesh:
+			var cube_instance = MeshInstance3D.new()
+			cube_instance.mesh = cube_mesh
+			cube_instance.scale = Vector3(0.5, 0.5, 0.5)  # Make cubes smaller
+			cube_instance.position = Vector3(i * cube_spacing, 0, 0)  # Position in a line
+			add_child(cube_instance)
+			cubes.append(cube_instance)
+
+	highlight_selected()
+
+func highlight_selected():
+	for i in range(len(cubes)):
+		if i == selected_index:
+			cubes[i].scale = Vector3(0.7, 0.7, 0.7)  # Enlarge selected cube
+		else:
+			cubes[i].scale = Vector3(0.5, 0.5, 0.5)  # Default size
