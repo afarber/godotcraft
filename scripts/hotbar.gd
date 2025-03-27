@@ -35,6 +35,9 @@ func _ready():
 	for mesh in cube_container.get_children():
 		if mesh is VisualInstance3D:
 			mesh.layers = 2
+			mesh.rotate_x(15)
+			mesh.rotate_y(10)
+			mesh.rotate_z(5)
 
 func display_hotbar_cubes():
 	var mesh_lib = grid_map.mesh_library

@@ -729,7 +729,7 @@ size = 32.0
 far = 40.0
 
 [node name="CubeContainer" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, -12, -8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, -10, -8)
 
 [node name="Block_Blank" type="MeshInstance3D" parent="CubeContainer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.38419e-07, 0)
