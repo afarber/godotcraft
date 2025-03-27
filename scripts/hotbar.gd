@@ -26,10 +26,15 @@ extends Node3D
 @export var cube_spacing: float = 2.5  # Spacing between cubes
 @export var selected_index: int = 0  # Default selected item
 
+@onready var cube_container: Node3D = $CubeContainer
+
 var cubes = []  # Stores hotbar cube instances
 
 func _ready():
-	display_hotbar_cubes()
+	#display_hotbar_cubes()
+	for mesh in cube_container.get_children():
+		if mesh is VisualInstance3D:
+			mesh.layers = 2
 
 func display_hotbar_cubes():
 	var mesh_lib = grid_map.mesh_library

@@ -27,8 +27,8 @@ const JUMP_VELOCITY = 12.0
 const GRAVITY_FACTOR = 2.5
 const SENSITIVITY = 0.002
 
-@onready var camera_3d: Camera3D = $Camera3D
-@onready var ray_cast_3d: RayCast3D = $Camera3D/RayCast3D
+@onready var main_camera: Camera3D = $MainCamera
+@onready var ray_cast: RayCast3D = $MainCamera/RayCast3D
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -36,8 +36,8 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		rotation.y = rotation.y - event.relative.x * SENSITIVITY
-		camera_3d.rotation.x = camera_3d.rotation.x - event.relative.y * SENSITIVITY
-		camera_3d.rotation.x = clamp(camera_3d.rotation.x, deg_to_rad(-70), deg_to_rad(80))
+		main_camera.rotation.x = main_camera.rotation.x - event.relative.y * SENSITIVITY
+		main_camera.rotation.x = clamp(main_camera.rotation.x, deg_to_rad(-70), deg_to_rad(80))
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -61,18 +61,18 @@ func _physics_process(delta: float) -> void:
 	
 	# Handle mouse clicks
 	if Input.is_action_just_pressed("left_click"):
-		if ray_cast_3d.is_colliding():
-			if ray_cast_3d.get_collider().has_method("destroy_block"):
+		if ray_cast.is_colliding():
+			if ray_cast.get_collider().has_method("destroy_block"):
 				# get the coordinate inside of the touched block, by subtracting its normal
-				ray_cast_3d.get_collider().destroy_block(ray_cast_3d.get_collision_point() - 
-														ray_cast_3d.get_collision_normal())
+				ray_cast.get_collider().destroy_block(ray_cast.get_collision_point() - 
+														ray_cast.get_collision_normal())
 
 	if Input.is_action_just_pressed("right_click"):
-		if ray_cast_3d.is_colliding():
-			if ray_cast_3d.get_collider().has_method("create_block"):
+		if ray_cast.is_colliding():
+			if ray_cast.get_collider().has_method("create_block"):
 				# get the coordinate inside of the touched block, by subtracting its normal
-				ray_cast_3d.get_collider().create_block(ray_cast_3d.get_collision_point() + 
-														ray_cast_3d.get_collision_normal(), 2)
+				ray_cast.get_collider().create_block(ray_cast.get_collision_point() + 
+														ray_cast.get_collision_normal(), 2)
 
 
 	move_and_slide()

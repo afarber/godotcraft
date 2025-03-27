@@ -1,5 +1,6 @@
-[gd_scene load_steps=73 format=4 uid="uid://bxanwthyrlar1"]
+[gd_scene load_steps=74 format=4 uid="uid://bxanwthyrlar1"]
 
+[ext_resource type="Script" uid="uid://c2l57xtmxsk4e" path="res://scripts/hotbar.gd" id="1_1lvyt"]
 [ext_resource type="Texture2D" uid="uid://j1800w6bp2fx" path="res://models/blocks/Block_Blank_Blocks_PixelArt.png" id="1_gbu6h"]
 [ext_resource type="Texture2D" uid="uid://cau77qe5b36cg" path="res://models/blocks/Block_Square_Blocks_PixelArt.png" id="2_1lvyt"]
 [ext_resource type="Texture2D" uid="uid://3u0ri8f38w0j" path="res://models/blocks/Bricks_Dark_Blocks_PixelArt.png" id="3_db7yd"]
@@ -719,10 +720,13 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_m012h")
 
 [node name="Hotbar" type="Node3D"]
+script = ExtResource("1_1lvyt")
 
 [node name="HotbarCamera" type="Camera3D" parent="."]
+cull_mask = 1048574
 projection = 1
 size = 32.0
+far = 40.0
 
 [node name="CubeContainer" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, -12, -8)
