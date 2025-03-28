@@ -22,37 +22,34 @@
 
 extends Node3D
 
-@export var grid_map: GridMap  # Reference to the GridMap
+@export var mesh_lib: MeshLibrary
+
 @export var cube_spacing: float = 2.5  # Spacing between cubes
-@export var selected_index: int = 0  # Default selected item
+@export var selected_index: int = 4  # Default selected item
 
 @onready var cube_container: Node3D = $CubeContainer
 
 var cubes = []  # Stores hotbar cube instances
 
 func _ready():
-	#display_hotbar_cubes()
-	for mesh in cube_container.get_children():
-		if mesh is VisualInstance3D:
-			mesh.layers = 2
-			mesh.rotate_x(15)
-			mesh.rotate_y(10)
-			mesh.rotate_z(5)
+	display_hotbar_cubes()
 
 func display_hotbar_cubes():
-	var mesh_lib = grid_map.mesh_library
-	if not mesh_lib:
-		return
+	var item_ids = mesh_lib.get_item_list()  # Get array of item IDs
+	var cube_count = item_ids.size()  # Count the number of items
 
-	var cube_count = mesh_lib.get_item_count()
 	for i in range(cube_count):
-		var cube_mesh = mesh_lib.get_item_mesh(i)
+		var cube_mesh = mesh_lib.get_item_mesh(item_ids[i])  # Get mesh using item ID
 		if cube_mesh:
 			var cube_instance = MeshInstance3D.new()
 			cube_instance.mesh = cube_mesh
 			cube_instance.scale = Vector3(0.5, 0.5, 0.5)  # Make cubes smaller
 			cube_instance.position = Vector3(i * cube_spacing, 0, 0)  # Position in a line
-			add_child(cube_instance)
+			cube_instance.layers = 2  # Ensure it's rendered by your second camera
+			cube_instance.rotate_x(15)
+			cube_instance.rotate_y(10)
+			cube_instance.rotate_z(5)
+			cube_container.add_child(cube_instance)  # Add to CubeContainer
 			cubes.append(cube_instance)
 
 	highlight_selected()
