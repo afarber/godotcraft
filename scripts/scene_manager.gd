@@ -32,11 +32,8 @@ const SCENE_PATHS := {
 	Keys.World : "res://scenes/world.tscn"
 }
 
-static func get_scene(scene_key:Keys) -> Node:
-	return load(SCENE_PATHS[scene_key]).instantiate()
+static func get_scene(scene_key:Keys) -> String:
+	return SCENE_PATHS[scene_key]
 
 func load_scene(scene_key:Keys) -> void:
-	for stage in get_children():
-		stage.queue_free()
-	add_child(get_scene(scene_key))
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	get_tree().change_scene_to_file(get_scene(scene_key))

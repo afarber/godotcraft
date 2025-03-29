@@ -1,17 +1,17 @@
 // MIT License
-// 
+//
 // Copyright (c) 2023 GDQuest
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in all
 // copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -83,7 +83,7 @@ vec3 hash( vec3 x ){
 vec3 voronoi( in vec3 x ){
 	vec3 p = floor( x );
 	vec3 f = fract( x );
-	
+
 	float id = 0.0;
 	vec2 res = vec2( 100.0 );
 	for( int k=-1; k<=1; k++ )
@@ -119,7 +119,7 @@ float cloud_density(vec3 p, float progress){
 	float clouds_shape = texture(cloud_shape_sampler, (p.xy + t_o) * clouds_scale).x;
 	float height_curve = texture(cloud_curves, vec2(progress, 0.0)).x;
 	float base_density = 1.0 - clouds_density;
-	float density = 
+	float density =
 	smoothstep(base_density - clouds_smoothness,
 	base_density + clouds_smoothness,
 	clouds_shape * noise * height_curve
@@ -128,21 +128,21 @@ float cloud_density(vec3 p, float progress){
 }
 
 vec2 cloud_ray_march(vec3 direction, vec3 sun_direction){
-	
+
 	float density = 0.0;
 	float light = 0.0;
-	
+
 	float height = 0.03;
 	vec3 sample_point = vec3(0.0, 0.0, 2.0);
-	
+
 	int loop_offset = clouds_samples * 3;
-	
+
 	for(int i = loop_offset; i < clouds_samples + loop_offset; i++) {
 		float progress = float(i) / float(clouds_samples);
 		sample_point = direction * height * progress;
 		float point_density = cloud_density(sample_point, progress);
 		density += point_density;
-		
+
 		float point_light = 0.0;
 		for(int f = 0; f < shadow_sample; f++){
 			float shadow_progress = float(f) / float(shadow_sample);
@@ -180,7 +180,7 @@ float get_shooting_star(vec3 eyedir){
 			clamp(shooting_uv.x * (1.0 - shooting_uv.x), 0.0, 1.0) *
 			clamp(shooting_uv.y * (1.0 - shooting_uv.y), 0.0, 1.0)
 			) * ceil(shooting_dir.z);
-			
+
 		shooting_star = clamp(
 			shooting_star + texture(shooting_star_sampler, shooting_uv).x
 			* sin(progress * PI)
@@ -191,10 +191,10 @@ float get_shooting_star(vec3 eyedir){
 }
 
 void sky() {
-	
+
 	float horizon_mask = abs(EYEDIR.y);
 	float bottom_mask = smoothstep(0.5, 0.45, SKY_COORDS.y);
-	
+
 	vec3 dir = direction_to_matrix(LIGHT0_DIRECTION) * EYEDIR;
 	vec2 astro_uv = (-(dir.xy / dir.z) * astro_scale) + vec2(0.5);
 	float astro_mask = ceil(
@@ -202,46 +202,46 @@ void sky() {
 		clamp(astro_uv.y * (1.0 - astro_uv.y), 0.0, 1.0)
 		) * ceil(dir.z);
 	vec4 astro_color = texture(astro_sampler, astro_uv);
-	
+
 	// Sky color
-	
+
 	vec3 sky_gradient = mix(bottom_color.rgb, top_color.rgb, clamp(EYEDIR.y, 0.0, 1.0));
 	vec3 sunset_color = sun_scatter * (1.0 - horizon_mask);
 	vec3 sky_color = clamp(sky_gradient + sunset_color, 0.0, 1.0);
-	
+
 	// Stars
-	
+
 	if(stars_intensity > 0.0){
 		vec2 stars = voronoi(EYEDIR * 25.0).xz;
 		sky_color += smoothstep(0.025 + ((1.0 + sin(TIME + stars.y)) / 2.0) * 0.05, 0.0, stars.x) * stars_intensity;
 	}
-	
+
 	// Add shooting stars
-	
+
 	if(shooting_stars_intensity > 0.0){
 		sky_color += get_shooting_star(EYEDIR) * shooting_stars_intensity * shooting_star_tint;
 	}
-	
+
 	// Add astro
-	
+
 	sky_color = mix(sky_color, astro_color.rgb * astro_intensity * astro_tint, astro_color.a * astro_mask * bottom_mask);
-	
+
 	// Add high clouds
-	
+
 	if(high_clouds_density > 0.0){
 		vec2 high_clouds_uv = (EYEDIR.xz / clamp(EYEDIR.y, 0.0, 1.0)) * 0.25 + TIME * 0.001;
 		float high_clouds_mask = texture(high_clouds_sampler, high_clouds_uv).x;
 		sky_color = mix(sky_color, clouds_light_color, smoothstep(0.0, 1.0, high_clouds_mask) * horizon_mask * bottom_mask * high_clouds_density);
 	}
-	
+
 	// clouds
 	if (AT_HALF_RES_PASS) {
 		vec3 clouds_direction = vec3(EYEDIR.xz / clamp(EYEDIR.y, 0.0, 1.0), 1.0);
 		vec2 clouds = EYEDIR.y > 0.0 ? cloud_ray_march(clouds_direction, LIGHT0_DIRECTION) : vec2(0.0);
-		
+
 		COLOR = mix(bottom_color, clouds_light_color, exp(-clouds.y * clouds_shadow_intensity));
 		ALPHA = (1.0 - exp(-clouds.x * horizon_mask * bottom_mask * 10.0));
-		
+
 	}else{
 		COLOR.rgb = mix(sky_color, HALF_RES_COLOR.rgb, HALF_RES_COLOR.a);
 	}

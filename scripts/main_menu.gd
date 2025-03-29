@@ -26,5 +26,8 @@ extends Node3D
 
 const ROTATION_SPEED = 2
 
+func _ready() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
 func _process(delta: float) -> void:
 	camera_pivot.rotation_degrees.y += delta * ROTATION_SPEED
