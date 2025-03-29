@@ -27,9 +27,14 @@ enum Keys {
 	World
 }
 
-const SCENE_PATHS := {
+const SCENE_PATHS: Dictionary[int, String] = {
 	Keys.MainMenu : "res://scenes/main_menu.tscn",
 	Keys.World : "res://scenes/world.tscn"
+}
+
+const SCENE_PACKED: Dictionary[int, PackedScene] = {
+	Keys.MainMenu : preload("res://scenes/main_menu.tscn"),
+	Keys.World : preload("res://scenes/world.tscn")
 }
 
 static func get_scene(scene_key:Keys) -> String:
