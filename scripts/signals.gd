@@ -20,10 +20,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-extends VBoxContainer
+extends Node
 
-func _on_new_game_button_pressed() -> void:
-	SceneManager.load_scene(SceneManager.Keys.World)
-
-func _on_quit_button_pressed() -> void:
-	get_tree().quit()
+signal create_hotbar

@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://dqgix4u0juefq"]
+[gd_scene load_steps=11 format=3 uid="uid://dqgix4u0juefq"]
 
 [ext_resource type="Material" uid="uid://dh6ykun8bv60u" path="res://shaders/day_sky.tres" id="1_k0juu"]
+[ext_resource type="Script" uid="uid://fdkywumcrd38" path="res://scripts/world.gd" id="1_qfnet"]
 [ext_resource type="MeshLibrary" uid="uid://dbwvuw0cpt0xx" path="res://resources/blocks_mesh_library.tres" id="2_4wyf3"]
 [ext_resource type="PackedScene" uid="uid://cnqk8sxsy3gtf" path="res://scenes/player.tscn" id="2_rwgxs"]
 [ext_resource type="Script" uid="uid://csopx35e3exwu" path="res://scripts/grid_map.gd" id="3_71j4m"]
@@ -47,6 +48,7 @@ subdivide_width = 64
 subdivide_depth = 64
 
 [node name="World" type="Node3D"]
+script = ExtResource("1_qfnet")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_71j4m")

@@ -20,10 +20,23 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-extends VBoxContainer
+extends Node
 
-func _on_new_game_button_pressed() -> void:
-	SceneManager.load_scene(SceneManager.Keys.World)
+enum Keys {
+	MainMenu,
+	World
+}
 
-func _on_quit_button_pressed() -> void:
-	get_tree().quit()
+const SCENE_PATHS := {
+	Keys.MainMenu : "res://scenes/main_menu.tscn",
+	Keys.World : "res://scenes/world.tscn"
+}
+
+static func get_scene(scene_key:Keys) -> Node:
+	return load(SCENE_PATHS[scene_key]).instantiate()
+
+func load_scene(scene_key:Keys) -> void:
+	for stage in get_children():
+		stage.queue_free()
+	add_child(get_scene(scene_key))
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

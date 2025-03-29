@@ -20,10 +20,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-extends VBoxContainer
+extends Node3D
 
-func _on_new_game_button_pressed() -> void:
-	SceneManager.load_scene(SceneManager.Keys.World)
+const MAIN_MENU = "res://scenes/main_menu.tscn"
 
-func _on_quit_button_pressed() -> void:
-	get_tree().quit()
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		print("ui_cancel")
+		SceneManager.load_scene(SceneManager.Keys.MainMenu)

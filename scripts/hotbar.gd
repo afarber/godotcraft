@@ -46,9 +46,9 @@ func display_hotbar_cubes():
 			cube_instance.scale = Vector3(0.5, 0.5, 0.5)  # Make cubes smaller
 			cube_instance.position = Vector3(i * cube_spacing, 0, 0)  # Position in a line
 			cube_instance.layers = 2  # Ensure it's rendered by your second camera
-			cube_instance.rotate_x(15)
+			cube_instance.rotate_x(5)
 			cube_instance.rotate_y(10)
-			cube_instance.rotate_z(5)
+			cube_instance.rotate_z(15)
 			cube_container.add_child(cube_instance)  # Add to CubeContainer
 			cubes.append(cube_instance)
 
