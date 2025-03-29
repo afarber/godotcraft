@@ -27,7 +27,7 @@ extends Node3D
 @export var cube_spacing: float = 2.5  # Spacing between cubes
 @export var selected_index: int = 4  # Default selected item
 
-@onready var cube_container: Node3D = $CubeContainer
+@onready var cube_container: Node3D = %CubeContainer
 
 var cubes = []  # Stores hotbar cube instances
 
