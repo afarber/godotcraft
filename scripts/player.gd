@@ -30,9 +30,6 @@ const SENSITIVITY = 0.002
 @onready var main_camera: Camera3D = $MainCamera
 @onready var ray_cast: RayCast3D = $MainCamera/RayCast3D
 
-func _ready() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		rotation.y = rotation.y - event.relative.x * SENSITIVITY

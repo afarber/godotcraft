@@ -27,18 +27,12 @@ enum Keys {
 	World
 }
 
-const SCENE_PATHS: Dictionary[int, String] = {
-	Keys.MainMenu : "res://scenes/main_menu.tscn",
-	Keys.World : "res://scenes/world.tscn"
-}
-
 const SCENE_PACKED: Dictionary[int, PackedScene] = {
 	Keys.MainMenu : preload("res://scenes/main_menu.tscn"),
 	Keys.World : preload("res://scenes/world.tscn")
 }
 
-static func get_scene(scene_key:Keys) -> String:
-	return SCENE_PATHS[scene_key]
-
 func load_scene(scene_key:Keys) -> void:
-	get_tree().change_scene_to_file(get_scene(scene_key))
+	get_tree().change_scene_to_packed(SCENE_PACKED[scene_key])
+	var mouse_mode = Input.MOUSE_MODE_VISIBLE if scene_key == Keys.MainMenu else Input.MOUSE_MODE_CAPTURED
+	Input.set_mouse_mode(mouse_mode)
