@@ -35,6 +35,7 @@ var item_ids = []
 var cubes = []
 
 func _ready():
+	Signals.selected_mesh_lib_index.emit(selected_index)
 	item_ids = mesh_lib.get_item_list()
 	display_hotbar_cubes()
 

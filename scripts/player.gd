@@ -33,7 +33,7 @@ const SENSITIVITY = 0.002
 
 var selected_index := 0
 
-func _ready() -> void:
+func _enter_tree() -> void:
 	Signals.selected_mesh_lib_index.connect(selected_mesh_lib_index)
 
 func selected_mesh_lib_index(index:int):
@@ -77,14 +77,18 @@ func _physics_process(delta: float) -> void:
 
 	# Handle mouse clicks
 	if Input.is_action_just_pressed("left_click"):
-		if ray_cast.is_colliding():
+		if hotbar.visible:
+			hotbar.hide_with_children()
+		elif ray_cast.is_colliding():
 			if ray_cast.get_collider().has_method("destroy_block"):
 				# get the coordinate inside of the touched block, by subtracting its normal
 				ray_cast.get_collider().destroy_block(ray_cast.get_collision_point() - 
 														ray_cast.get_collision_normal())
 
-	if Input.is_action_just_pressed("right_click"):
-		if ray_cast.is_colliding():
+	elif Input.is_action_just_pressed("right_click"):
+		if hotbar.visible:
+			hotbar.hide_with_children()
+		elif ray_cast.is_colliding():
 			if ray_cast.get_collider().has_method("create_block"):
 				# get the coordinate outside of the touched block, by adding its normal
 				ray_cast.get_collider().create_block(ray_cast.get_collision_point() + 
