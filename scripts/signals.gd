@@ -22,4 +22,5 @@
 
 extends Node
 
-signal create_hotbar
+signal show_hotbar
+signal hide_hotbar

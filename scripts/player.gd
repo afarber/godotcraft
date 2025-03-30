@@ -29,6 +29,15 @@ const SENSITIVITY = 0.002
 
 @onready var main_camera: Camera3D = $MainCamera
 @onready var ray_cast: RayCast3D = $MainCamera/RayCast3D
+@onready var hotbar: Node3D = $Hotbar
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_focus_next"):
+		print("ui_focus_next hotbar.visible: ", hotbar.visible)
+		if hotbar.visible:
+			hotbar.hide()
+		else:
+			hotbar.show()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
