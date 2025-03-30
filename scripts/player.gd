@@ -44,15 +44,15 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		# The hotbar scene children are a mix of Control and Node3D
 		# and thus they need to be shown or hidden individually
 		if hotbar.visible:
-			hotbar.hide()
-			for c in hotbar.get_children():
-				c.hide()
+			hotbar.hide_with_children()
 		else:
-			hotbar.show()
-			for c in hotbar.get_children():
-				c.show()
+			hotbar.show_with_children()
 
 func _unhandled_input(event: InputEvent) -> void:
+	# Disable camera movement when hotbar is visible
+	if hotbar.visible:
+		return
+
 	if event is InputEventMouseMotion:
 		rotation.y = rotation.y - event.relative.x * SENSITIVITY
 		main_camera.rotation.x = main_camera.rotation.x - event.relative.y * SENSITIVITY
@@ -67,17 +67,14 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-	
+	# Get the input direction and handle the movement/deceleration
+	# But only move if the 3D hotbar is not visible
+	if not hotbar.visible:
+		var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+		var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		velocity.x = direction.x * SPEED if direction else move_toward(velocity.x, 0, SPEED)
+		velocity.z = direction.z * SPEED if direction else move_toward(velocity.z, 0, SPEED)
+
 	# Handle mouse clicks
 	if Input.is_action_just_pressed("left_click"):
 		if ray_cast.is_colliding():

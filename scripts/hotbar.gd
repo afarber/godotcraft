@@ -56,12 +56,22 @@ func display_hotbar_cubes():
 
 	highlight_selected()
 
-func highlight_selected():
+func highlight_selected() -> void:
 	for i in range(len(cubes)):
 		if i == selected_index:
 			cubes[i].scale = Vector3(0.7, 0.7, 0.7)  # Enlarge selected cube
 		else:
 			cubes[i].scale = Vector3(0.5, 0.5, 0.5)  # Default size
+
+func hide_with_children() -> void:
+	hide()
+	for c in get_children():
+		c.hide()
+
+func show_with_children() -> void:
+	show()
+	for c in get_children():
+		c.show()
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if not visible:
