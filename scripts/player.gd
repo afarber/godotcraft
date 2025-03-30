@@ -31,6 +31,14 @@ const SENSITIVITY = 0.002
 @onready var ray_cast: RayCast3D = $MainCamera/RayCast3D
 @onready var hotbar: Node3D = $Hotbar
 
+var selected_index := 0
+
+func _ready() -> void:
+	Signals.selected_mesh_lib_index.connect(selected_mesh_lib_index)
+
+func selected_mesh_lib_index(index:int):
+	selected_index = index
+
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_focus_next"):
 		# The hotbar scene children are a mix of Control and Node3D
@@ -83,7 +91,7 @@ func _physics_process(delta: float) -> void:
 			if ray_cast.get_collider().has_method("create_block"):
 				# get the coordinate inside of the touched block, by subtracting its normal
 				ray_cast.get_collider().create_block(ray_cast.get_collision_point() + 
-														ray_cast.get_collision_normal(), 2)
+														ray_cast.get_collision_normal(), selected_index)
 
 
 	move_and_slide()

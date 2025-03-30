@@ -22,5 +22,4 @@
 
 extends Node
 
-signal show_hotbar
-signal hide_hotbar
+signal selected_mesh_lib_index(index:int)

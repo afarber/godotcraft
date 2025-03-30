@@ -29,16 +29,18 @@ extends Node3D
 
 @onready var cube_container: Node3D = %CubeContainer
 
-var cubes = []  # Stores hotbar cube instances
+# The array of item IDs in the mesh library
+var item_ids = []
+
+# The hotbar cube meshes
+var cubes = []
 
 func _ready():
+	item_ids = mesh_lib.get_item_list()
 	display_hotbar_cubes()
 
 func display_hotbar_cubes():
-	var item_ids = mesh_lib.get_item_list()  # Get array of item IDs
-	var cube_count = item_ids.size()  # Count the number of items
-	
-	for i in range(cube_count):
+	for i in range(item_ids.size()):
 		var cube_mesh = mesh_lib.get_item_mesh(item_ids[i])  # Get mesh using item ID
 		if cube_mesh:
 			var cube_instance = MeshInstance3D.new()
@@ -60,3 +62,16 @@ func highlight_selected():
 			cubes[i].scale = Vector3(0.7, 0.7, 0.7)  # Enlarge selected cube
 		else:
 			cubes[i].scale = Vector3(0.5, 0.5, 0.5)  # Default size
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if not visible:
+		return
+
+	if event.is_action_pressed("ui_left"):
+		selected_index = (selected_index - 1) % cubes.size()
+		Signals.selected_mesh_lib_index.emit(selected_index)
+		highlight_selected()
+	elif event.is_action_pressed("ui_right"):
+		selected_index = (selected_index + 1) % cubes.size()
+		Signals.selected_mesh_lib_index.emit(selected_index)
+		highlight_selected()
