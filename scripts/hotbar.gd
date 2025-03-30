@@ -78,10 +78,10 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		return
 
 	if event.is_action_pressed("ui_left"):
-		selected_index = (selected_index - 1) % cubes.size()
+		selected_index = wrapi(selected_index - 1, 0, cubes.size())
 		Signals.selected_mesh_lib_index.emit(selected_index)
 		highlight_selected()
 	elif event.is_action_pressed("ui_right"):
-		selected_index = (selected_index + 1) % cubes.size()
+		selected_index = wrapi(selected_index + 1, 0, cubes.size())
 		Signals.selected_mesh_lib_index.emit(selected_index)
 		highlight_selected()
