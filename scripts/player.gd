@@ -86,9 +86,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("right_click"):
 		if ray_cast.is_colliding():
 			if ray_cast.get_collider().has_method("create_block"):
-				# get the coordinate inside of the touched block, by subtracting its normal
+				# get the coordinate outside of the touched block, by adding its normal
 				ray_cast.get_collider().create_block(ray_cast.get_collision_point() + 
 														ray_cast.get_collision_normal(), selected_index)
-
 
 	move_and_slide()

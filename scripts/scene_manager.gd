@@ -32,7 +32,7 @@ const SCENE_PACKED: Dictionary[int, PackedScene] = {
 	Keys.World : preload("res://scenes/world.tscn")
 }
 
-func load_scene(scene_key:Keys) -> void:
-	get_tree().change_scene_to_packed(SCENE_PACKED[scene_key])
-	var mouse_mode = Input.MOUSE_MODE_VISIBLE if scene_key == Keys.MainMenu else Input.MOUSE_MODE_CAPTURED
+func change_scene(key:Keys) -> void:
+	get_tree().change_scene_to_packed(SCENE_PACKED[key])
+	var mouse_mode = Input.MOUSE_MODE_VISIBLE if key == Keys.MainMenu else Input.MOUSE_MODE_CAPTURED
 	Input.set_mouse_mode(mouse_mode)

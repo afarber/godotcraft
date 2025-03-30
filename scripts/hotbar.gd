@@ -23,9 +23,8 @@
 extends Node3D
 
 @export var mesh_lib: MeshLibrary
-
-@export var cube_spacing: float = 2.5  # Spacing between cubes
-@export var selected_index: int = 4  # Default selected item
+@export var cube_spacing: float = 2.5
+@export var selected_index: int = 4
 
 @onready var cube_container: Node3D = %CubeContainer
 
@@ -51,7 +50,7 @@ func display_hotbar_cubes():
 			cube_instance.rotate_x(5)
 			cube_instance.rotate_y(10)
 			cube_instance.rotate_z(15)
-			cube_container.add_child(cube_instance)  # Add to CubeContainer
+			cube_container.add_child(cube_instance)
 			cubes.append(cube_instance)
 
 	highlight_selected()
@@ -59,9 +58,11 @@ func display_hotbar_cubes():
 func highlight_selected() -> void:
 	for i in range(len(cubes)):
 		if i == selected_index:
-			cubes[i].scale = Vector3(0.7, 0.7, 0.7)  # Enlarge selected cube
+			# Enlarge selected cube
+			cubes[i].scale = Vector3(0.7, 0.7, 0.7)
 		else:
-			cubes[i].scale = Vector3(0.5, 0.5, 0.5)  # Default size
+			# Back to default size
+			cubes[i].scale = Vector3(0.5, 0.5, 0.5)
 
 func hide_with_children() -> void:
 	hide()
