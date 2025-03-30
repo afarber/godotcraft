@@ -33,11 +33,16 @@ const SENSITIVITY = 0.002
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_focus_next"):
-		print("ui_focus_next hotbar.visible: ", hotbar.visible)
+		# The hotbar scene children are a mix of Control and Node3D
+		# and thus they need to be shown or hidden individually
 		if hotbar.visible:
 			hotbar.hide()
+			for c in hotbar.get_children():
+				c.hide()
 		else:
 			hotbar.show()
+			for c in hotbar.get_children():
+				c.show()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:

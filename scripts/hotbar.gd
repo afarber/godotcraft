@@ -37,7 +37,7 @@ func _ready():
 func display_hotbar_cubes():
 	var item_ids = mesh_lib.get_item_list()  # Get array of item IDs
 	var cube_count = item_ids.size()  # Count the number of items
-
+	
 	for i in range(cube_count):
 		var cube_mesh = mesh_lib.get_item_mesh(item_ids[i])  # Get mesh using item ID
 		if cube_mesh:
