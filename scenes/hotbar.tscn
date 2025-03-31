@@ -16,6 +16,7 @@ grow_vertical = 2
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+unique_name_in_owner = true
 own_world_3d = true
 transparent_bg = true
 handle_input_locally = false
