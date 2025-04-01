@@ -22,4 +22,4 @@
 
 extends Node
 
-signal selected_mesh_lib_index(index:int)
+signal selected_hotbar_item(index:int)

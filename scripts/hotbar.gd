@@ -23,7 +23,7 @@
 extends Node3D
 
 @export var mesh_lib: MeshLibrary
-@export var selected_index: int = 4
+@export var cell_item: int = 4
 
 @onready var cube_container: Node3D = %CubeContainer
 @onready var hotbar_camera: Camera3D = %HotbarCamera
@@ -35,7 +35,7 @@ var item_ids = []
 var cubes = []
 
 func _ready():
-	Signals.selected_mesh_lib_index.emit(selected_index)
+	Signals.selected_hotbar_item.emit(cell_item)
 	item_ids = mesh_lib.get_item_list()
 	display_hotbar_cubes()
 
@@ -78,12 +78,28 @@ func display_hotbar_cubes():
 
 func highlight_selected() -> void:
 	for i in range(len(cubes)):
-		if i == selected_index:
+		if i == cell_item:
 			# Enlarge selected cube
 			cubes[i].scale = Vector3(0.7, 0.7, 0.7)
 		else:
 			# Back to default size
 			cubes[i].scale = Vector3(0.5, 0.5, 0.5)
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if not visible:
+		return
+
+	if event.is_action_pressed("ui_left"):
+		cell_item = wrapi(cell_item - 1, 0, cubes.size())
+		Signals.selected_hotbar_item.emit(cell_item)
+		highlight_selected()
+	elif event.is_action_pressed("ui_right"):
+		cell_item = wrapi(cell_item + 1, 0, cubes.size())
+		Signals.selected_hotbar_item.emit(cell_item)
+		highlight_selected()
+
+# The hotbar scene children are a mix of Control and Node3D
+# and thus they need to be shown or hidden individually
 
 func hide_with_children() -> void:
 	hide()
@@ -94,16 +110,3 @@ func show_with_children() -> void:
 	show()
 	for c in get_children():
 		c.show()
-
-func _unhandled_key_input(event: InputEvent) -> void:
-	if not visible:
-		return
-
-	if event.is_action_pressed("ui_left"):
-		selected_index = wrapi(selected_index - 1, 0, cubes.size())
-		Signals.selected_mesh_lib_index.emit(selected_index)
-		highlight_selected()
-	elif event.is_action_pressed("ui_right"):
-		selected_index = wrapi(selected_index + 1, 0, cubes.size())
-		Signals.selected_mesh_lib_index.emit(selected_index)
-		highlight_selected()

@@ -22,16 +22,25 @@
 
 extends CharacterBody3D
 
-const SPEED := 8.0
-const JUMP_VELOCITY := 12.0
-const GRAVITY_FACTOR := 2.5
-const SENSITIVITY := 0.002
+const JUMP_VELOCITY = 4.8
+const SENSITIVITY = 0.004
+const WALK_SPEED = 5.0
+const SPRINT_SPEED = 8.0
+var speed
 
-const BOB_FREQ := 2.4
-const BOB_AMP := 0.08
+# Head bob
+const BOB_FREQ = 2.4
+const BOB_AMP = 0.08
+var t_bob = 0.0
 
-var t_bob := 0.0
-var selected_index := 0
+# Field of view
+const BASE_FOV = 75.0
+const FOV_CHANGE = 1.5
+
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+
+# The item selected in the grid map
+var cell_item := GridMap.INVALID_CELL_ITEM
 
 @onready var head: Node3D = $Head
 @onready var main_camera: Camera3D = $Head/MainCamera
@@ -39,15 +48,13 @@ var selected_index := 0
 @onready var hotbar: Node3D = $Hotbar
 
 func _enter_tree() -> void:
-	Signals.selected_mesh_lib_index.connect(selected_mesh_lib_index)
+	Signals.selected_hotbar_item.connect(selected_hotbar_item)
 
-func selected_mesh_lib_index(index:int):
-	selected_index = index
+func selected_hotbar_item(index:int):
+	cell_item = index
 
 func _unhandled_key_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_focus_next"):
-		# The hotbar scene children are a mix of Control and Node3D
-		# and thus they need to be shown or hidden individually
+	if event.is_action_pressed("tab"):
 		if hotbar.visible:
 			hotbar.hide_with_children()
 		else:
@@ -59,26 +66,45 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 
 	if event is InputEventMouseMotion:
-		rotation.y = rotation.y - event.relative.x * SENSITIVITY
-		main_camera.rotation.x = main_camera.rotation.x - event.relative.y * SENSITIVITY
-		main_camera.rotation.x = clamp(main_camera.rotation.x, deg_to_rad(-70), deg_to_rad(80))
+		head.rotate_y(-event.relative.x * SENSITIVITY)
+		main_camera.rotate_x(-event.relative.y * SENSITIVITY)
+		main_camera.rotation.x = clamp(main_camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
-		velocity += GRAVITY_FACTOR * get_gravity() * delta
+		velocity.y -= gravity * delta
 
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	# Handle Jump.
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	# Get the input direction and handle the movement/deceleration
-	# But only move if the 3D hotbar is not visible
+	# Handle Sprint.
+	speed = SPRINT_SPEED if Input.is_action_pressed("sprint") else WALK_SPEED
+
 	if not hotbar.visible:
-		var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-		var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-		velocity.x = direction.x * SPEED if direction else 0
-		velocity.z = direction.z * SPEED if direction else 0
+		# Get the input direction and handle the movement/deceleration.
+		var input_dir = Input.get_vector("left", "right", "up", "down")
+		var direction = (head.transform.basis * transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		if is_on_floor():
+			if direction:
+				velocity.x = direction.x * speed
+				velocity.z = direction.z * speed
+			else:
+				velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
+				velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
+		else:
+			velocity.x = lerp(velocity.x, direction.x * speed, delta * 3.0)
+			velocity.z = lerp(velocity.z, direction.z * speed, delta * 3.0)
+	
+	# Head bob
+	t_bob += delta * velocity.length() * float(is_on_floor())
+	main_camera.transform.origin = headbob(t_bob)
+	
+	# FOV
+	var velocity_clamped = clamp(velocity.length(), 0.5, SPRINT_SPEED * 2)
+	var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
+	main_camera.fov = lerp(main_camera.fov, target_fov, delta * 8.0)
 
 	# Handle mouse clicks
 	if Input.is_action_just_pressed("left_click"):
@@ -97,7 +123,7 @@ func _physics_process(delta: float) -> void:
 			if ray_cast.get_collider().has_method("create_block"):
 				# get the coordinate outside of the touched block, by adding its normal
 				ray_cast.get_collider().create_block(ray_cast.get_collision_point() + 
-														ray_cast.get_collision_normal(), selected_index)
+														ray_cast.get_collision_normal(), cell_item)
 
 	move_and_slide()
 
