@@ -10,6 +10,8 @@ Using CC0-licensed [Cube World Kit](https://quaternius.com/packs/cubeworldkit.ht
 
 Using MIT-licensed [Stylized Sky](https://github.com/gdquest-demos/godot-4-stylized-sky) by GDQuest
 
+Using MIT-licensed [FirstPersonController](https://github.com/LegionGames/FirstPersonController/tree/main) by LegionGames
+
 TODO:
 
 Use MIT-licensed [Pocket Godot](https://github.com/lukky-nl/Pocket-Godot) by Lukky

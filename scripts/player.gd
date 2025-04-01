@@ -22,17 +22,21 @@
 
 extends CharacterBody3D
 
-const SPEED = 8.0
-const JUMP_VELOCITY = 12.0
-const GRAVITY_FACTOR = 2.5
-const SENSITIVITY = 0.002
+const SPEED := 8.0
+const JUMP_VELOCITY := 12.0
+const GRAVITY_FACTOR := 2.5
+const SENSITIVITY := 0.002
+
+const BOB_FREQ := 2.4
+const BOB_AMP := 0.08
+
+var t_bob := 0.0
+var selected_index := 0
 
 @onready var head: Node3D = $Head
 @onready var main_camera: Camera3D = $Head/MainCamera
 @onready var ray_cast: RayCast3D = $Head/MainCamera/RayCast3D
 @onready var hotbar: Node3D = $Hotbar
-
-var selected_index := 0
 
 func _enter_tree() -> void:
 	Signals.selected_mesh_lib_index.connect(selected_mesh_lib_index)
@@ -96,3 +100,9 @@ func _physics_process(delta: float) -> void:
 														ray_cast.get_collision_normal(), selected_index)
 
 	move_and_slide()
+
+func headbob(time) -> Vector3:
+	var pos = Vector3.ZERO
+	pos.y = sin(time * BOB_FREQ) * BOB_AMP
+	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
+	return pos
