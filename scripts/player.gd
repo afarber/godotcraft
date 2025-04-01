@@ -1,6 +1,6 @@
 # MIT License
 # 
-# Copyright (c) 2025 Alexander Farber
+# Copyright (c) 2023 LegionGames
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -22,7 +22,7 @@
 
 extends CharacterBody3D
 
-const JUMP_VELOCITY = 4.8
+const JUMP_VELOCITY = 6.4
 const SENSITIVITY = 0.004
 const WALK_SPEED = 5.0
 const SPRINT_SPEED = 8.0
