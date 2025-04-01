@@ -32,7 +32,7 @@ far = 40.0
 
 [node name="CubeContainer" type="Node3D" parent="SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, -10, -8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(0.999798, 0, -0.0200874, 0, 1, 0, 0.0200874, 0, 0.999798, 0, 25.4023, 10)
