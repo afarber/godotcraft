@@ -27,8 +27,9 @@ const JUMP_VELOCITY = 12.0
 const GRAVITY_FACTOR = 2.5
 const SENSITIVITY = 0.002
 
-@onready var main_camera: Camera3D = $MainCamera
-@onready var ray_cast: RayCast3D = $MainCamera/RayCast3D
+@onready var head: Node3D = $Head
+@onready var main_camera: Camera3D = $Head/MainCamera
+@onready var ray_cast: RayCast3D = $Head/MainCamera/RayCast3D
 @onready var hotbar: Node3D = $Hotbar
 
 var selected_index := 0
@@ -72,8 +73,8 @@ func _physics_process(delta: float) -> void:
 	if not hotbar.visible:
 		var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 		var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-		velocity.x = direction.x * SPEED if direction else move_toward(velocity.x, 0, SPEED)
-		velocity.z = direction.z * SPEED if direction else move_toward(velocity.z, 0, SPEED)
+		velocity.x = direction.x * SPEED if direction else 0
+		velocity.z = direction.z * SPEED if direction else 0
 
 	# Handle mouse clicks
 	if Input.is_action_just_pressed("left_click"):
