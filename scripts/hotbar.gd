@@ -23,10 +23,10 @@
 extends Node3D
 
 @export var mesh_lib: MeshLibrary
-@export var cube_spacing: float = 2.8
 @export var selected_index: int = 4
 
 @onready var cube_container: Node3D = %CubeContainer
+@onready var hotbar_camera: Camera3D = %HotbarCamera
 
 # The array of item IDs in the mesh library
 var item_ids = []
@@ -38,15 +38,18 @@ func _ready():
 	Signals.selected_mesh_lib_index.emit(selected_index)
 	item_ids = mesh_lib.get_item_list()
 	display_hotbar_cubes()
+	print(hotbar_camera.size)
 
 func display_hotbar_cubes():
+	var step = hotbar_camera.size / item_ids.size()
+
 	for i in range(item_ids.size()):
 		var cube_mesh = mesh_lib.get_item_mesh(item_ids[i])  # Get mesh using item ID
 		if cube_mesh is Mesh:
 			var cube_instance = MeshInstance3D.new()
 			cube_instance.mesh = cube_mesh
 			cube_instance.scale = Vector3(0.5, 0.5, 0.5)  # Make cubes smaller
-			var cube_x = i * cube_spacing
+			var cube_x = i * step
 			print("cube_x: ", cube_x)
 			cube_instance.position = Vector3(cube_x, 0, 0)  # Position in a line
 			cube_instance.layers = 2  # Ensure it's rendered by your second camera
