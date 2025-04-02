@@ -26,6 +26,6 @@ func destroy_block(world_coordinate) -> void:
 	var map_coordinate = local_to_map(world_coordinate)
 	set_cell_item(map_coordinate, INVALID_CELL_ITEM)
 	
-func create_block(world_coordinate, block_index) -> void:
+func create_block(world_coordinate, cell_item) -> void:
 	var map_coordinate = local_to_map(world_coordinate)
-	set_cell_item(map_coordinate, block_index)
+	set_cell_item(map_coordinate, cell_item)
