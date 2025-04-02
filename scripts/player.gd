@@ -22,20 +22,20 @@
 
 extends CharacterBody3D
 
-const JUMP_VELOCITY = 6.4
-const SENSITIVITY = 0.004
-const WALK_SPEED = 5.0
-const SPRINT_SPEED = 8.0
-var speed
+const JUMP_VELOCITY := 6.4
+const SENSITIVITY := 0.004
+const WALK_SPEED := 5.0
+const SPRINT_SPEED := 8.0
+var speed := WALK_SPEED
 
 # Head bob
-const BOB_FREQ = 2.4
-const BOB_AMP = 0.08
-var t_bob = 0.0
+const BOB_FREQ := 2.4
+const BOB_AMP := 0.08
+var head_bob_time := 0.0
 
 # Field of view
-const BASE_FOV = 75.0
-const FOV_CHANGE = 1.5
+const BASE_FOV := 75.0
+const FOV_CHANGE := 1.5
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -68,18 +68,18 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		main_camera.rotate_x(-event.relative.y * SENSITIVITY)
-		main_camera.rotation.x = clamp(main_camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+		main_camera.rotation.x = clamp(main_camera.rotation.x, deg_to_rad(-70), deg_to_rad(80))
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
+	# Add the gravity
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
-	# Handle Jump.
+	# Handle Jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	# Handle Sprint.
+	# Handle Sprint
 	speed = SPRINT_SPEED if Input.is_action_pressed("sprint") else WALK_SPEED
 
 	if not hotbar.visible:
@@ -98,8 +98,8 @@ func _physics_process(delta: float) -> void:
 			velocity.z = lerp(velocity.z, direction.z * speed, delta * 3.0)
 	
 	# Head bob
-	t_bob += delta * velocity.length() * float(is_on_floor())
-	main_camera.transform.origin = headbob(t_bob)
+	head_bob_time += delta * velocity.length() * float(is_on_floor())
+	main_camera.transform.origin = headbob(head_bob_time)
 	
 	# FOV
 	var velocity_clamped = clamp(velocity.length(), 0.5, SPRINT_SPEED * 2)
@@ -113,8 +113,7 @@ func _physics_process(delta: float) -> void:
 		elif ray_cast.is_colliding():
 			if ray_cast.get_collider().has_method("destroy_block"):
 				# get the coordinate inside of the touched block, by subtracting its normal
-				ray_cast.get_collider().destroy_block(ray_cast.get_collision_point() - 
-														ray_cast.get_collision_normal())
+				ray_cast.get_collider().destroy_block(ray_cast.get_collision_point() - ray_cast.get_collision_normal())
 
 	elif Input.is_action_just_pressed("right_click"):
 		if hotbar.visible:
@@ -122,8 +121,7 @@ func _physics_process(delta: float) -> void:
 		elif ray_cast.is_colliding():
 			if ray_cast.get_collider().has_method("create_block"):
 				# get the coordinate outside of the touched block, by adding its normal
-				ray_cast.get_collider().create_block(ray_cast.get_collision_point() + 
-														ray_cast.get_collision_normal(), cell_item)
+				ray_cast.get_collider().create_block(ray_cast.get_collision_point() + ray_cast.get_collision_normal(), cell_item)
 
 	move_and_slide()
 
