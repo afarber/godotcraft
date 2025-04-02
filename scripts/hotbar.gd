@@ -35,13 +35,18 @@ var item_ids = []
 # The hotbar cube meshes
 var cubes = []
 
-const STEP = 2.0
+const ROTATION_SPEED := 20
+const STEP := 4.0
 
 func _ready():
 	Signals.selected_hotbar_item.emit(cell_item)
 	item_ids = mesh_lib.get_item_list()
 	hotbar_camera.size = item_ids.size() * STEP
 	display_hotbar_cubes()
+
+func _process(delta: float) -> void:
+	var cube_instance = cubes[cell_item]
+	cube_instance.rotation_degrees.y += delta * ROTATION_SPEED
 
 func display_hotbar_cubes():
 	var hotbar_width = hotbar_camera.size
@@ -55,7 +60,7 @@ func display_hotbar_cubes():
 		if cube_mesh is Mesh:
 			var cube_instance = MeshInstance3D.new()
 			cube_instance.mesh = cube_mesh
-			cube_instance.scale = Vector3(0.5, 0.5, 0.5)
+			cube_instance.scale = Vector3(1.0, 1.0, 1.0)
 
 			# Calculate cube's x position relative to the camera center
 			# Center cubes in their slots
@@ -64,9 +69,9 @@ func display_hotbar_cubes():
 			cube_instance.position = Vector3(cube_x, cube_y, 0)
 
 			cube_instance.layers = 2
-			cube_instance.rotate_x(5)
-			cube_instance.rotate_y(10)
-			cube_instance.rotate_z(15)
+			cube_instance.rotation_degrees.x = 5
+			cube_instance.rotation_degrees.y = 10
+			cube_instance.rotation_degrees.z = 15
 			cube_container.add_child(cube_instance)
 			cubes.append(cube_instance)
 			print("cube_instance.position: ", cube_instance.position)
@@ -76,12 +81,16 @@ func display_hotbar_cubes():
 
 func highlight_selected() -> void:
 	for i in range(len(cubes)):
+		var cube_instance = cubes[i]
 		if i == cell_item:
 			# Enlarge selected cube
-			cubes[i].scale = Vector3(0.7, 0.7, 0.7)
+			cube_instance.scale = Vector3(1.5, 1.5, 1.5)
 		else:
 			# Back to default size
-			cubes[i].scale = Vector3(0.5, 0.5, 0.5)
+			cube_instance.scale = Vector3(1.0, 1.0, 1.0)
+			cube_instance.rotation_degrees.x = 5
+			cube_instance.rotation_degrees.y = 10
+			cube_instance.rotation_degrees.z = 15
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if not visible:
