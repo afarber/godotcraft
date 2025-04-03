@@ -69,28 +69,25 @@ func display_hotbar_cubes():
 			cube_instance.position = Vector3(cube_x, cube_y, 0)
 
 			cube_instance.layers = 2
-			cube_instance.rotation_degrees.x = 5
-			cube_instance.rotation_degrees.y = 10
-			cube_instance.rotation_degrees.z = 15
 			cube_container.add_child(cube_instance)
 			cubes.append(cube_instance)
 			print("cube_instance.position: ", cube_instance.position)
 
 	highlight_selected()
 
-
 func highlight_selected() -> void:
 	for i in range(len(cubes)):
 		var cube_instance = cubes[i]
+		cube_instance.rotation_degrees.x = 5
+		cube_instance.rotation_degrees.y = 10
+		cube_instance.rotation_degrees.z = 15
+
 		if i == cell_item:
 			# Enlarge selected cube
 			cube_instance.scale = Vector3(1.5, 1.5, 1.5)
 		else:
 			# Back to default size
 			cube_instance.scale = Vector3(1.0, 1.0, 1.0)
-			cube_instance.rotation_degrees.x = 5
-			cube_instance.rotation_degrees.y = 10
-			cube_instance.rotation_degrees.z = 15
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if not visible:
