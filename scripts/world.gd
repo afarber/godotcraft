@@ -26,28 +26,24 @@ extends Node3D
 @onready var grid_map: GridMap = $GridMap
 @onready var grid_container: GridContainer = %GridContainer
 
-@export var generate_previews: bool = false:
-	set(value):
-		print("generate_previews value: ", value)
-		generate_previews = value
-		if value:
-			generate_item_previews()
+# _ready() is run in the game and in the editor
+func _ready() -> void:
+	generate_item_previews()
 
+# _input(), _unhandled_input() , _process() never run in editor
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		SceneManager.change_scene(SceneManager.Keys.MainMenu)
 
 func generate_item_previews():
-	print("Engine.is_editor_hint(): ", Engine.is_editor_hint())
-	if not Engine.is_editor_hint():
-		return
+	print("generate_item_previews Engine.is_editor_hint(): ", Engine.is_editor_hint())
 
 	# Remove previous previews if any
 	for c in grid_container.get_children():
 		grid_container.remove_child(c)
 
 	for item_id in grid_map.mesh_library.get_item_list():
-		print("item_id: ", item_id)
+		print("generating preview texture for item_id: ", item_id)
 		var preview := grid_map.mesh_library.get_item_preview(item_id)
 		if preview is Texture2D:
 			var tex_rect := TextureRect.new()

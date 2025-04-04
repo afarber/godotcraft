@@ -63,7 +63,6 @@ shadow_offset = Vector2(-1, 3)
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_qfnet")
-generate_previews = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_71j4m")
