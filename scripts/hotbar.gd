@@ -71,7 +71,7 @@ func display_hotbar_cubes():
 			cube_instance.layers = 2
 			cube_container.add_child(cube_instance)
 			cubes.append(cube_instance)
-			print("cube_instance.position: ", cube_instance.position)
+			#print("cube_instance.position: ", cube_instance.position)
 
 	highlight_selected()
 

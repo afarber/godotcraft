@@ -119,4 +119,4 @@ grow_vertical = 2
 [node name="GridContainer" type="GridContainer" parent="InventoryUI/Panel/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-columns = 20
+columns = 6

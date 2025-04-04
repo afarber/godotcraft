@@ -43,7 +43,8 @@ func generate_item_previews():
 		return
 
 	# Remove previous previews if any
-	grid_container.clear()
+	for c in grid_container.get_children():
+		grid_container.remove_child(c)
 
 	for item_id in grid_map.mesh_library.get_item_list():
 		print("item_id: ", item_id)
