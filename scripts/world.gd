@@ -46,7 +46,7 @@ func generate_item_previews():
 		print("generating preview texture for item_id: ", item_id)
 		var preview := grid_map.mesh_library.get_item_preview(item_id)
 		if preview is Texture2D:
-			var tex_rect := TextureRect.new()
-			tex_rect.texture = preview
-			tex_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-			grid_container.add_child(tex_rect)
+			var text_rect := TextureRect.new()
+			text_rect.texture = preview
+			text_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+			grid_container.add_child(text_rect)
