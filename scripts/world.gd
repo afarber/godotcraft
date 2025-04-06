@@ -39,14 +39,14 @@ func _unhandled_input(event: InputEvent) -> void:
 		panel_container.visible = !panel_container.visible
 
 func generate_item_previews():
-	# print("generate_item_previews Engine.is_editor_hint(): ", Engine.is_editor_hint())
+	print("generate_item_previews Engine.is_editor_hint(): ", Engine.is_editor_hint())
 
 	# Remove previous previews if any
 	for c in grid_container.get_children():
 		grid_container.remove_child(c)
 
 	for item_id in grid_map.mesh_library.get_item_list():
-		print("generating preview texture for item_id: ", item_id)
+		# print("generating preview texture for item_id: ", item_id)
 		var preview := grid_map.mesh_library.get_item_preview(item_id)
 		if preview is Texture2D:
 			var text_rect := TextureRect.new()

@@ -60,7 +60,7 @@ func _process(delta: float) -> void:
 func display_hotbar_cubes():
 	# Start from the left edge of the camera
 	var start_x = -hotbar_camera_width / 2
-	var cube_y = (STEP - hotbar_camera_height) / 2;
+	var cube_y = (hotbar_camera_height - STEP) / 2;
 
 	for i in range(item_ids.size()):
 		var cube_mesh = mesh_lib.get_item_mesh(item_ids[i])
