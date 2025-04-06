@@ -104,28 +104,54 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 columns = 6
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchors_preset = 10
 anchor_right = 1.0
+offset_bottom = 20.0
 grow_horizontal = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_right = 4
+theme_override_constants/separation = 16
+alignment = 1
 
-[node name="TabLabel" type="Label" parent="MarginContainer"]
+[node name="TabLabel" type="Label" parent="HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Loading..."
 label_settings = ExtResource("7_i7141")
+horizontal_alignment = 1
 
-[node name="HelpLabel" type="Label" parent="MarginContainer"]
+[node name="InventoryLabel" type="Label" parent="HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-text = "Q: Inventory WASD: Movement SPACE: Jump"
+size_flags_horizontal = 6
+text = "Q: Inventory"
 label_settings = ExtResource("7_i7141")
+horizontal_alignment = 1
 
-[node name="FpsLabel" type="Label" parent="MarginContainer"]
+[node name="MovementLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "WASD: Movement"
+label_settings = ExtResource("7_i7141")
+horizontal_alignment = 1
+
+[node name="JumpLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "SPACE: Jump"
+label_settings = ExtResource("7_i7141")
+horizontal_alignment = 1
+
+[node name="SprintLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "SHIFT: Sprint"
+label_settings = ExtResource("7_i7141")
+horizontal_alignment = 1
+
+[node name="FpsLabel" type="Label" parent="HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "FPS: 143.0"
+size_flags_horizontal = 3
+text = "FPS: 139.0"
 label_settings = ExtResource("7_i7141")
-horizontal_alignment = 2
+horizontal_alignment = 1
