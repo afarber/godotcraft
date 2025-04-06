@@ -52,6 +52,9 @@ func _ready():
 	# The orthogonal camera "size" by default is same as its height
 	hotbar_camera.size = hotbar_camera_height
 	display_hotbar_cubes()
+	# Emit the signal with 1s delay, so that TabLabel is ready in world.tscn
+	await get_tree().create_timer(1.0).timeout
+	Signals.selected_hotbar_item.emit(cell_item)
 
 func _process(delta: float) -> void:
 	var cube_instance = cubes[cell_item]
@@ -78,7 +81,6 @@ func display_hotbar_cubes():
 	highlight_selected()
 
 func highlight_selected() -> void:
-	Signals.selected_hotbar_item.emit(cell_item)
 	for i in range(len(cubes)):
 		var cube_instance = cubes[i]
 		cube_instance.rotation_degrees.x = 5
@@ -96,6 +98,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 	if event.is_action_pressed("tab"):
 		cell_item = wrapi(cell_item + 1, 0, cubes.size())
+		Signals.selected_hotbar_item.emit(cell_item)
 		highlight_selected()
 
 # The hotbar scene children are a mix of Control and Node3D

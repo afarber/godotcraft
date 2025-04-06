@@ -31,14 +31,14 @@ extends Node3D
 
 # _ready() is run in the game and in the editor
 func _ready() -> void:
-	Signals.selected_hotbar_item.connect(selected_hotbar_item, CONNECT_DEFERRED)
+	Signals.selected_hotbar_item.connect(selected_hotbar_item)
 	generate_item_previews()
 
 func selected_hotbar_item(index:int):
 	tab_label.text = "TAB: " + str(index + 1)
 
 func _process(delta: float) -> void:
-	fps_label.text = str(Engine.get_frames_per_second())
+	fps_label.text = "FPS: " + str(Engine.get_frames_per_second())
 
 # _input(), _unhandled_input() , _process() never run in editor
 func _unhandled_input(event: InputEvent) -> void:
