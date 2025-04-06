@@ -45,7 +45,6 @@ var cell_item := GridMap.INVALID_CELL_ITEM
 @onready var head: Node3D = $Head
 @onready var main_camera: Camera3D = $Head/MainCamera
 @onready var ray_cast: RayCast3D = $Head/MainCamera/RayCast3D
-@onready var hotbar: Node3D = $Hotbar
 
 func _enter_tree() -> void:
 	Signals.selected_hotbar_item.connect(selected_hotbar_item)
@@ -53,18 +52,7 @@ func _enter_tree() -> void:
 func selected_hotbar_item(index:int):
 	cell_item = index
 
-func _unhandled_key_input(event: InputEvent) -> void:
-	if event.is_action_pressed("tab"):
-		if hotbar.visible:
-			hotbar.hide_with_children()
-		else:
-			hotbar.show_with_children()
-
 func _unhandled_input(event: InputEvent) -> void:
-	# Disable camera movement when hotbar is visible
-	if hotbar.visible:
-		return
-
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		main_camera.rotate_x(-event.relative.y * SENSITIVITY)
@@ -82,20 +70,19 @@ func _physics_process(delta: float) -> void:
 	# Handle Sprint
 	speed = SPRINT_SPEED if Input.is_action_pressed("sprint") else WALK_SPEED
 
-	if not hotbar.visible:
-		# Get the input direction and handle the movement/deceleration.
-		var input_dir = Input.get_vector("left", "right", "up", "down")
-		var direction = (head.transform.basis * transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-		if is_on_floor():
-			if direction:
-				velocity.x = direction.x * speed
-				velocity.z = direction.z * speed
-			else:
-				velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
-				velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
+	# Get the input direction and handle the movement/deceleration.
+	var input_dir = Input.get_vector("left", "right", "up", "down")
+	var direction = (head.transform.basis * transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if is_on_floor():
+		if direction:
+			velocity.x = direction.x * speed
+			velocity.z = direction.z * speed
 		else:
-			velocity.x = lerp(velocity.x, direction.x * speed, delta * 3.0)
-			velocity.z = lerp(velocity.z, direction.z * speed, delta * 3.0)
+			velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
+			velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
+	else:
+		velocity.x = lerp(velocity.x, direction.x * speed, delta * 3.0)
+		velocity.z = lerp(velocity.z, direction.z * speed, delta * 3.0)
 	
 	# Head bob
 	head_bob_time += delta * velocity.length() * float(is_on_floor())
@@ -108,17 +95,13 @@ func _physics_process(delta: float) -> void:
 
 	# Handle mouse clicks
 	if Input.is_action_just_pressed("left_click"):
-		if hotbar.visible:
-			hotbar.hide_with_children()
-		elif ray_cast.is_colliding():
+		if ray_cast.is_colliding():
 			if ray_cast.get_collider().has_method("destroy_block"):
 				# get the coordinate inside of the touched block, by subtracting its normal
 				ray_cast.get_collider().destroy_block(ray_cast.get_collision_point() - ray_cast.get_collision_normal())
 
 	elif Input.is_action_just_pressed("right_click"):
-		if hotbar.visible:
-			hotbar.hide_with_children()
-		elif ray_cast.is_colliding():
+		if ray_cast.is_colliding():
 			if ray_cast.get_collider().has_method("create_block"):
 				# get the coordinate outside of the touched block, by adding its normal
 				ray_cast.get_collider().create_block(ray_cast.get_collision_point() + ray_cast.get_collision_normal(), cell_item)

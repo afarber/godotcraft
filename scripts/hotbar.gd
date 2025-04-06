@@ -100,17 +100,13 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if not visible:
 		return
 
-	if event.is_action_pressed("ui_left"):
-		cell_item = wrapi(cell_item - 1, 0, cubes.size())
-		Signals.selected_hotbar_item.emit(cell_item)
-		highlight_selected()
-	elif event.is_action_pressed("ui_right"):
+	if event.is_action_pressed("tab"):
 		cell_item = wrapi(cell_item + 1, 0, cubes.size())
 		Signals.selected_hotbar_item.emit(cell_item)
 		highlight_selected()
 
 # The hotbar scene children are a mix of Control and Node3D
-# and thus they need to be shown or hidden individually
+# and thus they all need to be shown or hidden individually
 
 func hide_with_children() -> void:
 	hide()

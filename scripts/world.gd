@@ -26,11 +26,16 @@ extends Node3D
 @onready var grid_map: GridMap = $GridMap
 @onready var panel_container: PanelContainer = $PanelContainer
 @onready var grid_container: GridContainer = %GridContainer
+@onready var tab_label: Label = %TabLabel
 @onready var fps_label: Label = %FpsLabel
 
 # _ready() is run in the game and in the editor
 func _ready() -> void:
+	Signals.selected_hotbar_item.connect(selected_hotbar_item)
 	generate_item_previews()
+
+func selected_hotbar_item(index:int):
+	tab_label.text = "TAB: " + str(index + 1)
 
 func _process(delta: float) -> void:
 	fps_label.text = str(Engine.get_frames_per_second())
