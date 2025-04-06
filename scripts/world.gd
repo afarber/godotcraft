@@ -24,6 +24,7 @@
 extends Node3D
 
 @onready var grid_map: GridMap = $GridMap
+@onready var panel_container: PanelContainer = $PanelContainer
 @onready var grid_container: GridContainer = %GridContainer
 
 # _ready() is run in the game and in the editor
@@ -34,9 +35,11 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		SceneManager.change_scene(SceneManager.Keys.MainMenu)
+	elif event.is_action_pressed("inventory_2d"):
+		panel_container.visible = !panel_container.visible
 
 func generate_item_previews():
-	print("generate_item_previews Engine.is_editor_hint(): ", Engine.is_editor_hint())
+	# print("generate_item_previews Engine.is_editor_hint(): ", Engine.is_editor_hint())
 
 	# Remove previous previews if any
 	for c in grid_container.get_children():

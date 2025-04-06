@@ -35,13 +35,22 @@ var item_ids = []
 # The hotbar cube meshes
 var cubes = []
 
+var hotbar_camera_width
+var hotbar_camera_height
+
+# Rotation speed of the selected cube
 const ROTATION_SPEED := 20
-const STEP := 4.0
+
+# Distance between centers of two cubes of size 2 x 2 x 2
+const STEP := 5.0
 
 func _ready():
 	Signals.selected_hotbar_item.emit(cell_item)
 	item_ids = mesh_lib.get_item_list()
-	hotbar_camera.size = item_ids.size() * STEP
+	hotbar_camera_width = item_ids.size() * STEP
+	hotbar_camera_height = hotbar_camera_width / sub_viewport.size.aspect()
+	# The orthogonal camera "size" by default is same as its height
+	hotbar_camera.size = hotbar_camera_height
 	display_hotbar_cubes()
 
 func _process(delta: float) -> void:
@@ -49,10 +58,8 @@ func _process(delta: float) -> void:
 	cube_instance.rotation_degrees.y += delta * ROTATION_SPEED
 
 func display_hotbar_cubes():
-	var hotbar_width = hotbar_camera.size
-	var hotbar_camera_height = hotbar_camera.size / sub_viewport.size.aspect()
 	# Start from the left edge of the camera
-	var start_x = -hotbar_width / 2
+	var start_x = -hotbar_camera_width / 2
 	var cube_y = (STEP - hotbar_camera_height) / 2;
 
 	for i in range(item_ids.size()):

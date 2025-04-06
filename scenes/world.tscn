@@ -73,17 +73,19 @@ mesh = SubResource("PlaneMesh_rwgxs")
 transform = Transform3D(0.500287, 0, -0.865859, 0, 1, 0, 0.865859, 0, 0.500287, 0, 4, 0)
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -108.0
-offset_right = 420.0
-offset_bottom = 108.0
-grow_vertical = 2
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -210.0
+offset_right = 210.0
+offset_bottom = 216.0
+grow_horizontal = 2
 mouse_default_cursor_shape = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
+size_flags_vertical = 4
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
@@ -92,4 +94,5 @@ theme_override_constants/margin_bottom = 8
 [node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 0
 columns = 6
