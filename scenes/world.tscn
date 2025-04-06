@@ -129,5 +129,6 @@ label_settings = SubResource("LabelSettings_i7141")
 [node name="FpsLabel" type="Label" parent="MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+text = "144.0"
 label_settings = SubResource("LabelSettings_qfnet")
 horizontal_alignment = 2

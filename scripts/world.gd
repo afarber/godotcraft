@@ -31,7 +31,7 @@ extends Node3D
 
 # _ready() is run in the game and in the editor
 func _ready() -> void:
-	Signals.selected_hotbar_item.connect(selected_hotbar_item)
+	Signals.selected_hotbar_item.connect(selected_hotbar_item, CONNECT_DEFERRED)
 	generate_item_previews()
 
 func selected_hotbar_item(index:int):

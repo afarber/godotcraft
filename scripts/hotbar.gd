@@ -35,6 +35,7 @@ var item_ids = []
 # The hotbar cube meshes
 var cubes = []
 
+# The orthogonal camera will be resized according to the number of cubes
 var hotbar_camera_width
 var hotbar_camera_height
 
@@ -42,10 +43,9 @@ var hotbar_camera_height
 const ROTATION_SPEED := 20
 
 # Distance between centers of two cubes of size 2 x 2 x 2
-const STEP := 5.0
+const STEP := 4.0
 
 func _ready():
-	Signals.selected_hotbar_item.emit(cell_item)
 	item_ids = mesh_lib.get_item_list()
 	hotbar_camera_width = item_ids.size() * STEP
 	hotbar_camera_height = hotbar_camera_width / sub_viewport.size.aspect()
@@ -59,22 +59,17 @@ func _process(delta: float) -> void:
 
 func display_hotbar_cubes():
 	# Start from the left edge of the camera
-	var start_x = -hotbar_camera_width / 2
-	var cube_y = (hotbar_camera_height - STEP) / 2;
+	var left_x = -hotbar_camera_width / 2
+	var cube_y = hotbar_camera_height / 2- 2 * STEP / 3;
 
 	for i in range(item_ids.size()):
 		var cube_mesh = mesh_lib.get_item_mesh(item_ids[i])
 		if cube_mesh is Mesh:
+			var cube_x = left_x + (i + 0.5) * STEP
 			var cube_instance = MeshInstance3D.new()
 			cube_instance.mesh = cube_mesh
 			cube_instance.scale = Vector3(1.0, 1.0, 1.0)
-
-			# Calculate cube's x position relative to the camera center
-			# Center cubes in their slots
-			var cube_x = start_x + (i + 0.5) * STEP
-			# Position relative to camera
 			cube_instance.position = Vector3(cube_x, cube_y, 0)
-
 			cube_instance.layers = 2
 			cube_container.add_child(cube_instance)
 			cubes.append(cube_instance)
@@ -83,18 +78,17 @@ func display_hotbar_cubes():
 	highlight_selected()
 
 func highlight_selected() -> void:
+	Signals.selected_hotbar_item.emit(cell_item)
 	for i in range(len(cubes)):
 		var cube_instance = cubes[i]
 		cube_instance.rotation_degrees.x = 5
 		cube_instance.rotation_degrees.y = 10
 		cube_instance.rotation_degrees.z = 15
+		cube_instance.scale = Vector3(1.0, 1.0, 1.0)
 
 		if i == cell_item:
 			# Enlarge selected cube
 			cube_instance.scale = Vector3(1.5, 1.5, 1.5)
-		else:
-			# Back to default size
-			cube_instance.scale = Vector3(1.0, 1.0, 1.0)
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if not visible:
@@ -102,7 +96,6 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 	if event.is_action_pressed("tab"):
 		cell_item = wrapi(cell_item + 1, 0, cubes.size())
-		Signals.selected_hotbar_item.emit(cell_item)
 		highlight_selected()
 
 # The hotbar scene children are a mix of Control and Node3D
