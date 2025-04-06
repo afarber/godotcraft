@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cnqk8sxsy3gtf"]
+[gd_scene load_steps=6 format=3 uid="uid://cnqk8sxsy3gtf"]
 
 [ext_resource type="Script" uid="uid://bpjo5iyhud0tc" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="PackedScene" uid="uid://bxanwthyrlar1" path="res://scenes/hotbar.tscn" id="2_g2els"]
@@ -10,6 +10,8 @@ height = 4.0
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_u8vuu"]
 radius = 1.0
 height = 4.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_g2els"]
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_3vyb7")
@@ -24,10 +26,15 @@ mesh = SubResource("CapsuleMesh_u8vuu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="MainCamera" type="Camera3D" parent="Head"]
-cull_mask = 1048573
+cull_mask = 1048569
 current = true
 
 [node name="RayCast3D" type="RayCast3D" parent="Head/MainCamera"]
 target_position = Vector3(0, 0, -8)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Head/MainCamera"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, -1)
+layers = 4
+mesh = SubResource("BoxMesh_g2els")
 
 [node name="Hotbar" parent="." instance=ExtResource("2_g2els")]

@@ -71,7 +71,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.31349, 0)
 mesh = SubResource("PlaneMesh_rwgxs")
 
 [node name="Player" parent="." instance=ExtResource("2_rwgxs")]
-transform = Transform3D(0.500287, 0, -0.865859, 0, 1, 0, 0.865859, 0, 0.500287, 0, 4, 0)
+transform = Transform3D(-0.999999, 0, 8.74227e-08, 0, 1, 0, -8.74227e-08, 0, -0.999999, 0, 4, -4)
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 visible = false
@@ -152,6 +152,6 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "FPS: 139.0"
+text = "FPS: 46.0"
 label_settings = ExtResource("7_i7141")
 horizontal_alignment = 1
