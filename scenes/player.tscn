@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cnqk8sxsy3gtf"]
+[gd_scene load_steps=7 format=3 uid="uid://cnqk8sxsy3gtf"]
 
 [ext_resource type="Script" uid="uid://bpjo5iyhud0tc" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="PackedScene" uid="uid://bxanwthyrlar1" path="res://scenes/hotbar.tscn" id="2_g2els"]
@@ -13,13 +13,16 @@ height = 4.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_g2els"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2els"]
+albedo_color = Color(0.576471, 0.564706, 0.823529, 1)
+
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_3vyb7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_u8vuu")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="CapsuleMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_u8vuu")
 
 [node name="Head" type="Node3D" parent="."]
@@ -32,9 +35,10 @@ current = true
 [node name="RayCast3D" type="RayCast3D" parent="Head/MainCamera"]
 target_position = Vector3(0, 0, -8)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Head/MainCamera"]
+[node name="BoxMesh" type="MeshInstance3D" parent="Head/MainCamera"]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, -1)
 layers = 4
 mesh = SubResource("BoxMesh_g2els")
+surface_material_override/0 = SubResource("StandardMaterial3D_g2els")
 
 [node name="Hotbar" parent="." instance=ExtResource("2_g2els")]

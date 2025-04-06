@@ -35,10 +35,14 @@ func _ready() -> void:
 	generate_item_previews()
 
 func selected_hotbar_item(index:int):
-	tab_label.text = "TAB: " + str(index + 1)
+	# Do not change the label text in the editor, because of git
+	if not Engine.is_editor_hint():
+		tab_label.text = "TAB: " + str(index + 1)
 
 func _process(delta: float) -> void:
-	fps_label.text = "FPS: " + str(Engine.get_frames_per_second())
+	# Do not change the label text in the editor, because of git
+	if not Engine.is_editor_hint():
+		fps_label.text = "FPS: " + str(Engine.get_frames_per_second())
 
 # _input(), _unhandled_input() , _process() never run in editor
 func _unhandled_input(event: InputEvent) -> void:
