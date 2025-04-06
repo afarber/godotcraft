@@ -26,10 +26,14 @@ extends Node3D
 @onready var grid_map: GridMap = $GridMap
 @onready var panel_container: PanelContainer = $PanelContainer
 @onready var grid_container: GridContainer = %GridContainer
+@onready var fps_label: Label = %FpsLabel
 
 # _ready() is run in the game and in the editor
 func _ready() -> void:
 	generate_item_previews()
+
+func _process(delta: float) -> void:
+	fps_label.text = str(Engine.get_frames_per_second())
 
 # _input(), _unhandled_input() , _process() never run in editor
 func _unhandled_input(event: InputEvent) -> void:

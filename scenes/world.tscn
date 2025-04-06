@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dqgix4u0juefq"]
+[gd_scene load_steps=13 format=3 uid="uid://dqgix4u0juefq"]
 
 [ext_resource type="Material" uid="uid://dh6ykun8bv60u" path="res://shaders/day_sky.tres" id="1_k0juu"]
 [ext_resource type="Script" uid="uid://fdkywumcrd38" path="res://scripts/world.gd" id="1_qfnet"]
@@ -46,6 +46,16 @@ material = SubResource("ShaderMaterial_4wyf3")
 size = Vector2(500, 500)
 subdivide_width = 64
 subdivide_depth = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_i7141"]
+font_size = 14
+font_color = Color(0, 0, 0, 1)
+outline_size = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_qfnet"]
+font_size = 14
+font_color = Color(0, 0, 0, 1)
+outline_size = 1
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_qfnet")
@@ -102,3 +112,21 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 columns = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+
+[node name="TabLabel" type="Label" parent="MarginContainer"]
+layout_mode = 2
+text = "TAB"
+label_settings = SubResource("LabelSettings_i7141")
+
+[node name="FpsLabel" type="Label" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = SubResource("LabelSettings_qfnet")
+horizontal_alignment = 2
