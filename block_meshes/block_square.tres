@@ -1,0 +1,42 @@
+[gd_resource type="ArrayMesh" load_steps=4 format=4 uid="uid://bt0ri24dicpfm"]
+
+[ext_resource type="Texture2D" uid="uid://cau77qe5b36cg" path="res://models/blocks/Block_Square_Blocks_PixelArt.png" id="1_yvqjr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kf62m"]
+resource_name = "Blocks_Pixelart"
+cull_mode = 2
+albedo_texture = ExtResource("1_yvqjr")
+roughness = 0.5
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_s0i7d"]
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 2, 2),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAACAAEAAwAEAAEABQAAAAIAAwAAAAUABAAGAAIABQACAAYAAwAHAAQAAwAFAAcABwAGAAQABwAFAAYA"),
+"name": "Blocks_Pixelart",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAAAAAAD/////AAAAAAAA//8AAAAA//8AAAAAAAD///////8AAAAAAAD//wAAAAD/////AAD//wAA//8AAA==")
+}]
+blend_shape_mode = 0
+
+[resource]
+resource_name = "Block_Square_Cube_602"
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 2, 2),
+"attribute_data": PackedByteArray("JJl1mOVmN2YkmTdm5WZ1mCSZdZjlZjdmJJk3ZuVmdZgkmXWY5WY3ZiSZN2blZnWYJJl1mOVmN2YkmTdm5WZ1mOVmdZgkmTdmJJl1mOVmN2YkmTdm5WZ1mOVmN2YkmXWY"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
+"material": SubResource("StandardMaterial3D_kf62m"),
+"name": "Blocks_Pixelart",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAAAAA////////AAD//wAA//8AAP////8AAAAA/////wAAAAD/v/////////+//////wAA/7///wAA////v///AAD//wCAAAD/////AID///////8AgAAAAAD//wCAAAAAAP///78AAP//AAD/vwAA//////+/AAAAAAAA/7///wAAAABU1QAAAAD//1TV//8AAP//VNUAAAAAAABU1f///////1TVAAD//wAAVNX/////AABU1QAA/////1TV/3////9/////f////3////9/AAD/fwAA/38AAP9/AAD/f////3////9/////f////3////9/////f////3///6oqVNWqKlTVqipU1aoqVNWqqqqqqqqqqqqqqqqqqqqq")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_s0i7d")

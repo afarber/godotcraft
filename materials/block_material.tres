@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://l4a2mhsp22gl"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6364o"]
+load_path = "res://.godot/imported/Block_Blank_Blocks_PixelArt.png-651070fb3156c4f02b9552ceda35a9d6.s3tc.ctex"
+
+[resource]
+resource_name = "Blocks_Pixelart"
+cull_mode = 2
+albedo_texture = SubResource("CompressedTexture2D_6364o")
+roughness = 0.5
+texture_filter = 2
