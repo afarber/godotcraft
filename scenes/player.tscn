@@ -16,19 +16,19 @@ height = 4.0
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2els"]
 albedo_color = Color(0.576471, 0.564706, 0.823529, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_dqkch"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qhqgy"]
-transparency = 1
-albedo_color = Color(0, 0.862745, 0.235294, 0.498039)
-
 [sub_resource type="BoxMesh" id="BoxMesh_qlg0r"]
 size = Vector3(2, 2, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dqkch"]
 transparency = 1
 albedo_color = Color(1, 0.396078, 0.372549, 0.529412)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dqkch"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qhqgy"]
+transparency = 1
+albedo_color = Color(0, 0.862745, 0.235294, 0.498039)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_3vyb7")
@@ -55,14 +55,14 @@ layers = 4
 mesh = SubResource("BoxMesh_g2els")
 surface_material_override/0 = SubResource("StandardMaterial3D_g2els")
 
-[node name="CreatePreview" type="MeshInstance3D" parent="Head/MainCamera"]
-visible = false
-mesh = SubResource("BoxMesh_dqkch")
-surface_material_override/0 = SubResource("StandardMaterial3D_qhqgy")
-
 [node name="DestroyPreview" type="MeshInstance3D" parent="Head/MainCamera"]
 visible = false
 mesh = SubResource("BoxMesh_qlg0r")
 surface_material_override/0 = SubResource("StandardMaterial3D_dqkch")
+
+[node name="CreatePreview" type="MeshInstance3D" parent="Head/MainCamera"]
+visible = false
+mesh = SubResource("BoxMesh_dqkch")
+surface_material_override/0 = SubResource("StandardMaterial3D_qhqgy")
 
 [node name="Hotbar" parent="." instance=ExtResource("2_g2els")]

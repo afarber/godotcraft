@@ -29,3 +29,8 @@ func destroy_block(world_coordinate) -> void:
 func create_block(world_coordinate, cell_item) -> void:
 	var map_coordinate = local_to_map(world_coordinate)
 	set_cell_item(map_coordinate, cell_item)
+
+func get_snapped_position(world_position: Vector3) -> Vector3:
+	var map_coords = local_to_map(world_position)
+	var local_position = map_to_local(map_coords)
+	return to_global(local_position)

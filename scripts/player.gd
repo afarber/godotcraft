@@ -45,6 +45,8 @@ var cell_item := GridMap.INVALID_CELL_ITEM
 @onready var head: Node3D = $Head
 @onready var main_camera: Camera3D = $Head/MainCamera
 @onready var ray_cast: RayCast3D = $Head/MainCamera/RayCast3D
+@onready var destroy_preview: MeshInstance3D = $Head/MainCamera/DestroyPreview
+@onready var create_preview: MeshInstance3D = $Head/MainCamera/CreatePreview
 
 func _enter_tree() -> void:
 	Signals.selected_hotbar_item.connect(selected_hotbar_item)
@@ -83,11 +85,11 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = lerp(velocity.x, direction.x * speed, delta * 3.0)
 		velocity.z = lerp(velocity.z, direction.z * speed, delta * 3.0)
-	
+
 	# Head bob
 	head_bob_time += delta * velocity.length() * float(is_on_floor())
 	main_camera.transform.origin = headbob(head_bob_time)
-	
+
 	# FOV
 	var velocity_clamped = clamp(velocity.length(), 0.5, SPRINT_SPEED * 2)
 	var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
@@ -96,15 +98,47 @@ func _physics_process(delta: float) -> void:
 	# Handle mouse clicks
 	if Input.is_action_just_pressed("left_click"):
 		if ray_cast.is_colliding():
-			if ray_cast.get_collider().has_method("destroy_block"):
-				# get the coordinate inside of the touched block, by subtracting its normal
-				ray_cast.get_collider().destroy_block(ray_cast.get_collision_point() - ray_cast.get_collision_normal())
+			var target = ray_cast.get_collider()
+			if target.has_method("destroy_block"):
+				var destroy_pos = ray_cast.get_collision_point() - ray_cast.get_collision_normal()
+				target.destroy_block(destroy_pos)
 
 	elif Input.is_action_just_pressed("right_click"):
 		if ray_cast.is_colliding():
-			if ray_cast.get_collider().has_method("create_block"):
-				# get the coordinate outside of the touched block, by adding its normal
-				ray_cast.get_collider().create_block(ray_cast.get_collision_point() + ray_cast.get_collision_normal(), cell_item)
+			var target = ray_cast.get_collider()
+			if target.has_method("create_block"):
+				var create_pos = ray_cast.get_collision_point() + ray_cast.get_collision_normal()
+				target.create_block(create_pos, cell_item)
+
+	# Handle previews
+	if ray_cast.is_colliding():
+		var pos = ray_cast.get_collision_point()
+		var normal = ray_cast.get_collision_normal()
+		var target = ray_cast.get_collider()
+
+		if target is GridMap:
+			var grid_map := target as GridMap
+
+			# Create preview
+			if grid_map.has_method("create_block"):
+				var create_pos = pos + normal
+				var create_world_pos = grid_map.get_snapped_position(create_pos)
+				create_preview.global_transform.origin = create_world_pos
+				create_preview.visible = true
+			else:
+				create_preview.visible = false
+
+			# Destroy preview
+			if grid_map.has_method("destroy_block"):
+				var destroy_pos = pos - normal
+				var destroy_world_pos = grid_map.get_snapped_position(destroy_pos)
+				destroy_preview.global_transform.origin = destroy_world_pos
+				destroy_preview.visible = true
+			else:
+				destroy_preview.visible = false
+	else:
+		create_preview.visible = false
+		destroy_preview.visible = false
 
 	move_and_slide()
 
