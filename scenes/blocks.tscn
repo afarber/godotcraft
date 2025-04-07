@@ -27,52 +27,69 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.38419e-07, 0)
 mesh = ExtResource("2_s0i7d")
 
 [node name="BlockSquare" parent="." instance=ExtResource("1_ic3an")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 mesh = ExtResource("2_ic3an")
 
 [node name="BricksDark" parent="." instance=ExtResource("1_ic3an")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
 mesh = ExtResource("3_ic3an")
 
 [node name="BricksGrey" parent="." instance=ExtResource("1_ic3an")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
 mesh = ExtResource("4_ic3an")
 
 [node name="BricksRed" parent="." instance=ExtResource("1_ic3an")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 0)
 mesh = ExtResource("5_ic3an")
 
 [node name="BricksYellow" parent="." instance=ExtResource("1_ic3an")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
 mesh = ExtResource("6_ic3an")
 
 [node name="Coal" parent="." instance=ExtResource("1_ic3an")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 mesh = ExtResource("7_ic3an")
 
 [node name="Diamond" parent="." instance=ExtResource("1_ic3an")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
 mesh = ExtResource("8_ic3an")
 
 [node name="Dirt" parent="." instance=ExtResource("1_ic3an")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 4)
 mesh = ExtResource("9_ic3an")
 
 [node name="Exclamation" parent="." instance=ExtResource("1_ic3an")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 4)
 mesh = ExtResource("10_ic3an")
 
 [node name="Grass" parent="." instance=ExtResource("1_ic3an")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 4)
 mesh = ExtResource("11_ic3an")
 
 [node name="Ice" parent="." instance=ExtResource("1_ic3an")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 4)
 mesh = ExtResource("12_ic3an")
 
 [node name="Leaves" parent="." instance=ExtResource("1_ic3an")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
 mesh = ExtResource("13_ic3an")
 
 [node name="QuestionMark" parent="." instance=ExtResource("1_ic3an")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 8)
 mesh = ExtResource("14_ic3an")
 
 [node name="Snow" parent="." instance=ExtResource("1_ic3an")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
 mesh = ExtResource("15_ic3an")
 
 [node name="Stone" parent="." instance=ExtResource("1_ic3an")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 8)
 mesh = ExtResource("16_ic3an")
 
 [node name="Wood" parent="." instance=ExtResource("1_ic3an")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 8)
 mesh = ExtResource("17_ic3an")
 
 [node name="WoodPlanks" parent="." instance=ExtResource("1_ic3an")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 8)
 mesh = ExtResource("18_ic3an")
