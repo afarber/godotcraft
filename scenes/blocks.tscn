@@ -1,7 +1,8 @@
-[gd_scene load_steps=37 format=3 uid="uid://5ver7jccjhcr"]
+[gd_scene load_steps=20 format=3 uid="uid://5ver7jccjhcr"]
 
-[ext_resource type="ArrayMesh" uid="uid://cpexrxktocjoe" path="res://block_meshes/block_blank.tres" id="1_ic3an"]
+[ext_resource type="PackedScene" uid="uid://b5co6navgsibm" path="res://scenes/block_template.tscn" id="1_ic3an"]
 [ext_resource type="ArrayMesh" uid="uid://bt0ri24dicpfm" path="res://block_meshes/block_square.tres" id="2_ic3an"]
+[ext_resource type="ArrayMesh" uid="uid://cpexrxktocjoe" path="res://block_meshes/block_blank.tres" id="2_s0i7d"]
 [ext_resource type="ArrayMesh" uid="uid://cwqytrrodu4r2" path="res://block_meshes/bricks_dark.tres" id="3_ic3an"]
 [ext_resource type="ArrayMesh" uid="uid://d3518j8jnapqi" path="res://block_meshes/bricks_grey.tres" id="4_ic3an"]
 [ext_resource type="ArrayMesh" uid="uid://d37xs8vou8i2g" path="res://block_meshes/bricks_red.tres" id="5_ic3an"]
@@ -19,238 +20,59 @@
 [ext_resource type="ArrayMesh" uid="uid://dog52qy0d03ln" path="res://block_meshes/wood.tres" id="17_ic3an"]
 [ext_resource type="ArrayMesh" uid="uid://pxngyq48gi56" path="res://block_meshes/wood_planks.tres" id="18_ic3an"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_4134y"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ic3an"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_s0i7d"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_yfapm"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_m64mq"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_03jfd"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_wrnuw"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_gl5s0"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_s5mrl"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_fcfn4"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_cny3s"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_keoep"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_xputf"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_wc0x4"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_p2h4m"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_a6x4e"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_onrx3"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_j2u7o"]
-size = Vector3(2, 2, 2)
-
 [node name="Blocks" type="Node3D"]
 
-[node name="Block_Blank" type="MeshInstance3D" parent="."]
+[node name="BlockBlank" parent="." instance=ExtResource("1_ic3an")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.38419e-07, 0)
-mesh = ExtResource("1_ic3an")
-skeleton = NodePath("")
+mesh = ExtResource("2_s0i7d")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Block_Blank"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Block_Blank/StaticBody3D"]
-shape = SubResource("BoxShape3D_4134y")
-
-[node name="Block_Square" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+[node name="BlockSquare" parent="." instance=ExtResource("1_ic3an")]
 mesh = ExtResource("2_ic3an")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Block_Square"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Block_Square/StaticBody3D"]
-shape = SubResource("BoxShape3D_ic3an")
-
-[node name="Bricks_Dark" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+[node name="BricksDark" parent="." instance=ExtResource("1_ic3an")]
 mesh = ExtResource("3_ic3an")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Bricks_Dark"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Bricks_Dark/StaticBody3D"]
-shape = SubResource("BoxShape3D_s0i7d")
-
-[node name="Bricks_Grey" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 0)
+[node name="BricksGrey" parent="." instance=ExtResource("1_ic3an")]
 mesh = ExtResource("4_ic3an")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Bricks_Grey"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Bricks_Grey/StaticBody3D"]
-shape = SubResource("BoxShape3D_yfapm")
-
-[node name="Bricks_Red" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
+[node name="BricksRed" parent="." instance=ExtResource("1_ic3an")]
 mesh = ExtResource("5_ic3an")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Bricks_Red"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Bricks_Red/StaticBody3D"]
-shape = SubResource("BoxShape3D_m64mq")
-
-[node name="Bricks_Yellow" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
+[node name="BricksYellow" parent="." instance=ExtResource("1_ic3an")]
 mesh = ExtResource("6_ic3an")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Bricks_Yellow"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Bricks_Yellow/StaticBody3D"]
-shape = SubResource("BoxShape3D_03jfd")
-
-[node name="Coal" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+[node name="Coal" parent="." instance=ExtResource("1_ic3an")]
 mesh = ExtResource("7_ic3an")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Coal"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Coal/StaticBody3D"]
-shape = SubResource("BoxShape3D_wrnuw")
-
-[node name="Diamond" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
+[node name="Diamond" parent="." instance=ExtResource("1_ic3an")]
 mesh = ExtResource("8_ic3an")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Diamond"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Diamond/StaticBody3D"]
-shape = SubResource("BoxShape3D_gl5s0")
-
-[node name="Dirt" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 3)
+[node name="Dirt" parent="." instance=ExtResource("1_ic3an")]
 mesh = ExtResource("9_ic3an")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Dirt"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Dirt/StaticBody3D"]
-shape = SubResource("BoxShape3D_s5mrl")
-
-[node name="Exclamation" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 3)
+[node name="Exclamation" parent="." instance=ExtResource("1_ic3an")]
 mesh = ExtResource("10_ic3an")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Exclamation"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Exclamation/StaticBody3D"]
-shape = SubResource("BoxShape3D_fcfn4")
-
-[node name="Grass" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 3)
+[node name="Grass" parent="." instance=ExtResource("1_ic3an")]
 mesh = ExtResource("11_ic3an")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Grass"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Grass/StaticBody3D"]
-shape = SubResource("BoxShape3D_cny3s")
-
-[node name="Ice" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 3)
+[node name="Ice" parent="." instance=ExtResource("1_ic3an")]
 mesh = ExtResource("12_ic3an")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Ice"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ice/StaticBody3D"]
-shape = SubResource("BoxShape3D_keoep")
-
-[node name="Leaves" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+[node name="Leaves" parent="." instance=ExtResource("1_ic3an")]
 mesh = ExtResource("13_ic3an")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Leaves"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Leaves/StaticBody3D"]
-shape = SubResource("BoxShape3D_xputf")
-
-[node name="QuestionMark" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 6)
+[node name="QuestionMark" parent="." instance=ExtResource("1_ic3an")]
 mesh = ExtResource("14_ic3an")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="QuestionMark"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="QuestionMark/StaticBody3D"]
-shape = SubResource("BoxShape3D_wc0x4")
-
-[node name="Snow" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 6)
+[node name="Snow" parent="." instance=ExtResource("1_ic3an")]
 mesh = ExtResource("15_ic3an")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Snow"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Snow/StaticBody3D"]
-shape = SubResource("BoxShape3D_p2h4m")
-
-[node name="Stone" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 6)
+[node name="Stone" parent="." instance=ExtResource("1_ic3an")]
 mesh = ExtResource("16_ic3an")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Stone"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Stone/StaticBody3D"]
-shape = SubResource("BoxShape3D_a6x4e")
-
-[node name="Wood" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 6)
+[node name="Wood" parent="." instance=ExtResource("1_ic3an")]
 mesh = ExtResource("17_ic3an")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Wood"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Wood/StaticBody3D"]
-shape = SubResource("BoxShape3D_onrx3")
-
-[node name="WoodPlanks" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 6)
+[node name="WoodPlanks" parent="." instance=ExtResource("1_ic3an")]
 mesh = ExtResource("18_ic3an")
-skeleton = NodePath("")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="WoodPlanks"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WoodPlanks/StaticBody3D"]
-shape = SubResource("BoxShape3D_j2u7o")
