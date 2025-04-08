@@ -22,15 +22,20 @@
 
 extends GridMap
 
-func destroy_block(world_coordinate) -> void:
-	var map_coordinate = local_to_map(world_coordinate)
+func destroy_block(world_coordinate: Vector3) -> void:
+	var map_coordinate := local_to_map(world_coordinate)
 	set_cell_item(map_coordinate, INVALID_CELL_ITEM)
 	
-func create_block(world_coordinate, cell_item) -> void:
-	var map_coordinate = local_to_map(world_coordinate)
+func create_block(world_coordinate: Vector3, cell_item: int) -> void:
+	var map_coordinate := local_to_map(world_coordinate)
 	set_cell_item(map_coordinate, cell_item)
 
-func get_snapped_position(world_position: Vector3) -> Vector3:
-	var map_coords = local_to_map(world_position)
-	var local_position = map_to_local(map_coords)
-	return to_global(local_position)
+# Take global position of a ray cast colliding point plus/minus surface normal
+# and then return adjusted global position and rotation, aligned to the grid map.
+# That is used to align meshes not contained in the grid map to align with it.
+func get_snapped_transform(world_coordinate: Vector3) -> Transform3D:
+	var map_coordinate := local_to_map(world_coordinate)
+	var local_position := map_to_local(map_coordinate)
+	var global_position := to_global(local_position)
+	# the grid map rotation/scale + the preview/effect mesh translation
+	return Transform3D(global_transform.basis, global_position)

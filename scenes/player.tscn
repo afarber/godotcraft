@@ -41,7 +41,6 @@ mesh = SubResource("CapsuleMesh_u8vuu")
 
 [node name="DestroyPreview" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-top_level = true
 visible = false
 mesh = SubResource("BoxMesh_qlg0r")
 skeleton = NodePath("../Head/MainCamera")
@@ -49,7 +48,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_dqkch")
 
 [node name="CreatePreview" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-top_level = true
 visible = false
 mesh = SubResource("BoxMesh_dqkch")
 skeleton = NodePath("../Head/MainCamera")

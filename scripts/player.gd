@@ -98,47 +98,43 @@ func _physics_process(delta: float) -> void:
 	# Handle mouse clicks
 	if Input.is_action_just_pressed("left_click"):
 		if ray_cast.is_colliding():
+			var pos = ray_cast.get_collision_point()
+			var normal = ray_cast.get_collision_normal()
 			var target = ray_cast.get_collider()
-			if target.has_method("destroy_block"):
-				var destroy_pos = ray_cast.get_collision_point() - ray_cast.get_collision_normal()
+			if target is GridMap and target.has_method("destroy_block"):
+				# Find position inside the cube
+				var destroy_pos = pos - normal
 				target.destroy_block(destroy_pos)
 
 	elif Input.is_action_just_pressed("right_click"):
 		if ray_cast.is_colliding():
+			var pos = ray_cast.get_collision_point()
+			var normal = ray_cast.get_collision_normal()
 			var target = ray_cast.get_collider()
-			if target.has_method("create_block"):
-				var create_pos = ray_cast.get_collision_point() + ray_cast.get_collision_normal()
+			if target is GridMap and target.has_method("create_block"):
+				# Find position outside the cube
+				var create_pos = pos + normal
 				target.create_block(create_pos, cell_item)
 
-	# Handle previews
+	# Handle translucent preview meshes
 	if ray_cast.is_colliding():
 		var pos = ray_cast.get_collision_point()
 		var normal = ray_cast.get_collision_normal()
 		var target = ray_cast.get_collider()
-
-		if target is GridMap:
-			var grid_map := target as GridMap
-
-			# Create preview
-			if grid_map.has_method("create_block"):
-				var create_pos = pos + normal
-				var create_world_pos = grid_map.get_snapped_position(create_pos)
-				create_preview.global_transform.origin = create_world_pos
-				create_preview.visible = true
-			else:
-				create_preview.visible = false
-
-			# Destroy preview
-			if grid_map.has_method("destroy_block"):
-				var destroy_pos = pos - normal
-				var destroy_world_pos = grid_map.get_snapped_position(destroy_pos)
-				destroy_preview.global_transform.origin = destroy_world_pos
-				destroy_preview.visible = true
-			else:
-				destroy_preview.visible = false
-	else:
-		create_preview.visible = false
 		destroy_preview.visible = false
+		create_preview.visible = false
+
+		# The green create preview mesh, display it aligned with the grid map or hide
+		if target is GridMap and target.has_method("create_block") and target.has_method("get_snapped_transform"):
+			var create_pos = pos + normal
+			create_preview.global_transform = target.get_snapped_transform(create_pos)
+			create_preview.visible = true
+
+		# The red destroy preview mesh, display it aligned with the grid map or hide
+		if target is GridMap and target.has_method("destroy_block") and target.has_method("get_snapped_transform"):
+			var destroy_pos = pos - normal
+			destroy_preview.global_transform = target.get_snapped_transform(destroy_pos)
+			destroy_preview.visible = true
 
 	move_and_slide()
 
