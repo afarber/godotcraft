@@ -11,11 +11,6 @@ height = 4.0
 radius = 1.0
 height = 4.0
 
-[sub_resource type="BoxMesh" id="BoxMesh_g2els"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2els"]
-albedo_color = Color(0.576471, 0.564706, 0.823529, 1)
-
 [sub_resource type="BoxMesh" id="BoxMesh_qlg0r"]
 size = Vector3(2, 2, 2)
 
@@ -30,6 +25,11 @@ size = Vector3(2, 2, 2)
 transparency = 1
 albedo_color = Color(0, 0.862745, 0.235294, 0.498039)
 
+[sub_resource type="BoxMesh" id="BoxMesh_g2els"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2els"]
+albedo_color = Color(0.576471, 0.564706, 0.823529, 1)
+
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_3vyb7")
 
@@ -38,6 +38,22 @@ shape = SubResource("CapsuleShape3D_u8vuu")
 
 [node name="CapsuleMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_u8vuu")
+
+[node name="DestroyPreview" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+top_level = true
+visible = false
+mesh = SubResource("BoxMesh_qlg0r")
+skeleton = NodePath("../Head/MainCamera")
+surface_material_override/0 = SubResource("StandardMaterial3D_dqkch")
+
+[node name="CreatePreview" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+top_level = true
+visible = false
+mesh = SubResource("BoxMesh_dqkch")
+skeleton = NodePath("../Head/MainCamera")
+surface_material_override/0 = SubResource("StandardMaterial3D_qhqgy")
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -54,15 +70,5 @@ transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, -1)
 layers = 4
 mesh = SubResource("BoxMesh_g2els")
 surface_material_override/0 = SubResource("StandardMaterial3D_g2els")
-
-[node name="DestroyPreview" type="MeshInstance3D" parent="Head/MainCamera"]
-visible = false
-mesh = SubResource("BoxMesh_qlg0r")
-surface_material_override/0 = SubResource("StandardMaterial3D_dqkch")
-
-[node name="CreatePreview" type="MeshInstance3D" parent="Head/MainCamera"]
-visible = false
-mesh = SubResource("BoxMesh_dqkch")
-surface_material_override/0 = SubResource("StandardMaterial3D_qhqgy")
 
 [node name="Hotbar" parent="." instance=ExtResource("2_g2els")]

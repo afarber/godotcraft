@@ -45,8 +45,8 @@ var cell_item := GridMap.INVALID_CELL_ITEM
 @onready var head: Node3D = $Head
 @onready var main_camera: Camera3D = $Head/MainCamera
 @onready var ray_cast: RayCast3D = $Head/MainCamera/RayCast3D
-@onready var destroy_preview: MeshInstance3D = $Head/MainCamera/DestroyPreview
-@onready var create_preview: MeshInstance3D = $Head/MainCamera/CreatePreview
+@onready var destroy_preview: MeshInstance3D = $DestroyPreview
+@onready var create_preview: MeshInstance3D = $CreatePreview
 
 func _enter_tree() -> void:
 	Signals.selected_hotbar_item.connect(selected_hotbar_item)
