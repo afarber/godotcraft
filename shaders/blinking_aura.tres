@@ -1,4 +1,15 @@
-[gd_resource type="VisualShader" load_steps=9 format=3 uid="uid://da8t8f31gpt8"]
+[gd_resource type="VisualShader" load_steps=13 format=3 uid="uid://da8t8f31gpt8"]
+
+[sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_bnepj"]
+size = Vector2(984, 499)
+title = "Blinking part"
+tint_color_enabled = true
+attached_nodes = PackedInt32Array(7, 5, 8, 6)
+
+[sub_resource type="VisualShaderNodeProximityFade" id="VisualShaderNodeProximityFade_bnepj"]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_dk7k4"]
+operator = 2
 
 [sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_bnepj"]
 parameter_name = "transparency_texture"
@@ -12,22 +23,29 @@ source = 5
 parameter_name = "main_color"
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_bnepj"]
+linked_parent_graph_frame = 10
 input_name = "time"
 
 [sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_dk7k4"]
 output_port_for_preview = 0
+linked_parent_graph_frame = 10
 function = 1
 
 [sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_8nrmh"]
 output_port_for_preview = 0
 default_input_values = [1, -1.0, 2, 1.0, 3, 0.3, 4, 1.0]
+linked_parent_graph_frame = 10
 
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_83icl"]
 default_input_values = [0, 0.0, 1, 8.0]
+linked_parent_graph_frame = 10
 operator = 2
 
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_yy17f"]
 operator = 2
+
+[sub_resource type="VisualShaderNodeBillboard" id="VisualShaderNodeBillboard_dk7k4"]
+billboard_type = 2
 
 [resource]
 code = "shader_type spatial;
@@ -35,8 +53,25 @@ render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_s
 
 uniform vec4 main_color : source_color;
 uniform sampler2D transparency_texture : source_color;
+uniform sampler2D depth_tex_frg_11 : hint_depth_texture;
 
 
+
+void vertex() {
+	mat4 n_out2p0;
+// GetBillboardMatrix:2
+	{
+		mat4 __mvm = VIEW_MATRIX * mat4(INV_VIEW_MATRIX[0], MODEL_MATRIX[1], vec4(normalize(cross(INV_VIEW_MATRIX[0].xyz, MODEL_MATRIX[1].xyz)), 0.0), MODEL_MATRIX[3]);
+		__mvm = __mvm * mat4(vec4(1.0, 0.0, 0.0, 0.0), vec4(0.0, 1.0 / length(MODEL_MATRIX[1].xyz), 0.0, 0.0), vec4(0.0, 0.0, 1.0, 0.0), vec4(0.0, 0.0, 0.0, 1.0));
+		n_out2p0 = __mvm;
+	}
+
+
+// Output:0
+	MODELVIEW_MATRIX = n_out2p0;
+
+
+}
 
 void fragment() {
 // ColorParameter:4
@@ -79,16 +114,34 @@ void fragment() {
 	float n_out9p0 = n_out3p1 * n_out7p0;
 
 
+	float n_out11p0;
+// ProximityFade:11
+	float n_in11p0 = 1.00000;
+	{
+		float __depth_tex = texture(depth_tex_frg_11, SCREEN_UV).r;
+		vec4 __depth_world_pos = INV_PROJECTION_MATRIX * vec4(SCREEN_UV * 2.0 - 1.0, __depth_tex, 1.0);
+		__depth_world_pos.xyz /= __depth_world_pos.w;
+		n_out11p0 = clamp(1.0 - smoothstep(__depth_world_pos.z + n_in11p0, __depth_world_pos.z, VERTEX.z), 0.0, 1.0);
+	}
+
+
+// FloatOp:12
+	float n_out12p0 = n_out9p0 * n_out11p0;
+
+
 // Output:0
 	ALBEDO = vec3(n_out4p0.xyz);
-	ALPHA = n_out9p0;
+	ALPHA = n_out12p0;
 
 
 }
 "
-graph_offset = Vector2(-151.993, -167.382)
+graph_offset = Vector2(403.888, -120.256)
 flags/unshaded = true
 flags/shadows_disabled = true
+nodes/vertex/2/node = SubResource("VisualShaderNodeBillboard_dk7k4")
+nodes/vertex/2/position = Vector2(60, 160)
+nodes/vertex/connections = PackedInt32Array(2, 0, 0, 10)
 nodes/fragment/0/position = Vector2(1340, -80)
 nodes/fragment/2/node = SubResource("VisualShaderNodeTexture2DParameter_bnepj")
 nodes/fragment/2/position = Vector2(80, 380)
@@ -97,13 +150,19 @@ nodes/fragment/3/position = Vector2(80, 60)
 nodes/fragment/4/node = SubResource("VisualShaderNodeColorParameter_dk7k4")
 nodes/fragment/4/position = Vector2(60, -200)
 nodes/fragment/5/node = SubResource("VisualShaderNodeInput_bnepj")
-nodes/fragment/5/position = Vector2(-300, 800)
+nodes/fragment/5/position = Vector2(-80, 800)
 nodes/fragment/6/node = SubResource("VisualShaderNodeFloatFunc_dk7k4")
-nodes/fragment/6/position = Vector2(220, 780)
+nodes/fragment/6/position = Vector2(440, 780)
 nodes/fragment/7/node = SubResource("VisualShaderNodeRemap_8nrmh")
-nodes/fragment/7/position = Vector2(440, 780)
+nodes/fragment/7/position = Vector2(660, 780)
 nodes/fragment/8/node = SubResource("VisualShaderNodeFloatOp_83icl")
-nodes/fragment/8/position = Vector2(0, 800)
+nodes/fragment/8/position = Vector2(220, 800)
 nodes/fragment/9/node = SubResource("VisualShaderNodeFloatOp_yy17f")
 nodes/fragment/9/position = Vector2(800, 300)
-nodes/fragment/connections = PackedInt32Array(2, 0, 3, 2, 4, 0, 0, 0, 6, 0, 7, 0, 5, 0, 8, 0, 8, 0, 6, 0, 3, 1, 9, 0, 7, 0, 9, 1, 9, 0, 0, 1)
+nodes/fragment/10/node = SubResource("VisualShaderNodeFrame_bnepj")
+nodes/fragment/10/position = Vector2(-120, 720)
+nodes/fragment/11/node = SubResource("VisualShaderNodeProximityFade_bnepj")
+nodes/fragment/11/position = Vector2(860, 500)
+nodes/fragment/12/node = SubResource("VisualShaderNodeFloatOp_dk7k4")
+nodes/fragment/12/position = Vector2(1100, 260)
+nodes/fragment/connections = PackedInt32Array(2, 0, 3, 2, 4, 0, 0, 0, 6, 0, 7, 0, 5, 0, 8, 0, 8, 0, 6, 0, 3, 1, 9, 0, 7, 0, 9, 1, 9, 0, 12, 0, 12, 0, 0, 1, 11, 0, 12, 1)

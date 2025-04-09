@@ -4,7 +4,7 @@ A blocky open world game in Godot
 
 ![screenshot](https://github.com/afarber/godotcraft/blob/main/screenshot.gif?raw=true)
 
-Initially based on [Youtube videos](https://youtube.com/playlist?list=PLQZiuyZoMHcgQDKSv8L9IJ1y6VcVgFI7D) by LegionGames and [Loot Drop VFX](https://youtu.be/_ty0ClqAurc) by Le Lu
+Initially based on [Godot Beginner Minecraft Tutorial](https://youtube.com/playlist?list=PLQZiuyZoMHcgQDKSv8L9IJ1y6VcVgFI7D) by LegionGames and [Loot Drop VFX](https://youtu.be/_ty0ClqAurc) by Le Lu
 
 Using MIT-licensed [FirstPersonController](https://github.com/LegionGames/FirstPersonController/tree/main) by LegionGames
 
