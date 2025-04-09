@@ -1,4 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cre32shgisldh"]
+[gd_scene load_steps=7 format=3 uid="uid://cre32shgisldh"]
+
+[ext_resource type="Shader" uid="uid://da8t8f31gpt8" path="res://shaders/blinking_aura.tres" id="1_p5nsk"]
+[ext_resource type="Texture2D" uid="uid://cw7bapjbap4ir" path="res://textures/T_Aura_8.png" id="2_qdhcu"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_62ywc"]
 
@@ -7,6 +10,12 @@ albedo_color = Color(0.266575, 0.266575, 0.266575, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_62ywc"]
 size = Vector2(3, 5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qdhcu"]
+render_priority = 0
+shader = ExtResource("1_p5nsk")
+shader_parameter/main_color = Color(1, 0.192157, 0.247059, 1)
+shader_parameter/transparency_texture = ExtResource("2_qdhcu")
 
 [node name="vfx_loot_drop" type="Node"]
 
@@ -18,3 +27,4 @@ surface_material_override/0 = SubResource("StandardMaterial3D_62ywc")
 [node name="aura_glow_effect" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 mesh = SubResource("QuadMesh_62ywc")
+surface_material_override/0 = SubResource("ShaderMaterial_qdhcu")

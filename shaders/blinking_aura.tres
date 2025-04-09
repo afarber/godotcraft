@@ -1,0 +1,51 @@
+[gd_resource type="VisualShader" load_steps=4 format=3 uid="uid://da8t8f31gpt8"]
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_bnepj"]
+parameter_name = "transparency_texture"
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_bnepj"]
+expanded_output_ports = [0]
+source = 5
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_dk7k4"]
+parameter_name = "main_color"
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx, unshaded, shadows_disabled;
+
+uniform vec4 main_color : source_color;
+uniform sampler2D transparency_texture : source_color;
+
+
+
+void fragment() {
+// ColorParameter:4
+	vec4 n_out4p0 = main_color;
+
+
+	vec4 n_out3p0;
+// Texture2D:3
+	n_out3p0 = texture(transparency_texture, UV);
+	float n_out3p1 = n_out3p0.r;
+
+
+// Output:0
+	ALBEDO = vec3(n_out4p0.xyz);
+	ALPHA = n_out3p1;
+
+
+}
+"
+graph_offset = Vector2(-151, -432)
+flags/unshaded = true
+flags/shadows_disabled = true
+nodes/fragment/0/position = Vector2(840, 100)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture2DParameter_bnepj")
+nodes/fragment/2/position = Vector2(80, 380)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_bnepj")
+nodes/fragment/3/position = Vector2(80, 60)
+nodes/fragment/4/node = SubResource("VisualShaderNodeColorParameter_dk7k4")
+nodes/fragment/4/position = Vector2(60, -200)
+nodes/fragment/connections = PackedInt32Array(2, 0, 3, 2, 3, 1, 0, 1, 4, 0, 0, 0)
