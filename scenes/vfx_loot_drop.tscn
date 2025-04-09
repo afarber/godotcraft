@@ -14,7 +14,7 @@ size = Vector2(3, 5)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qdhcu"]
 render_priority = 0
 shader = ExtResource("1_p5nsk")
-shader_parameter/main_color = Color(1, 0.192157, 0.247059, 1)
+shader_parameter/main_color = Color(2, 0.4, 0.3, 1)
 shader_parameter/transparency_texture = ExtResource("2_qdhcu")
 
 [node name="vfx_loot_drop" type="Node"]
