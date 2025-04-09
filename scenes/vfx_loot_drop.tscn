@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cre32shgisldh"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_62ywc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_62ywc"]
+albedo_color = Color(0.266575, 0.266575, 0.266575, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_62ywc"]
+size = Vector2(3, 5)
+
+[node name="vfx_loot_drop" type="Node"]
+
+[node name="floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+mesh = SubResource("PlaneMesh_62ywc")
+surface_material_override/0 = SubResource("StandardMaterial3D_62ywc")
+
+[node name="aura_glow_effect" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+mesh = SubResource("QuadMesh_62ywc")
