@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://cre32shgisldh"]
 
 [ext_resource type="Shader" uid="uid://da8t8f31gpt8" path="res://shaders/blinking_aura.tres" id="1_1mu4m"]
-[ext_resource type="Texture2D" uid="uid://cw7bapjbap4ir" path="res://textures/T_Aura_8.png" id="2_ehbsa"]
+[ext_resource type="Texture2D" uid="uid://xa2u62738c3x" path="res://textures/T_VFX_Flare_251.jpg" id="2_21m0y"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_62ywc"]
 
@@ -47,13 +47,13 @@ color = Color(2, 0.5, 0.4, 1)
 [sub_resource type="QuadMesh" id="QuadMesh_ouwop"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_62ywc"]
-size = Vector2(3, 5)
+size = Vector2(2, 4)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qdhcu"]
 render_priority = 0
 shader = ExtResource("1_1mu4m")
 shader_parameter/main_color = Color(1, 0.117647, 0.117647, 1)
-shader_parameter/transparency_texture = ExtResource("2_ehbsa")
+shader_parameter/transparency_texture = ExtResource("2_21m0y")
 shader_parameter/blinking_speed = 8.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ouwop"]
@@ -132,7 +132,7 @@ process_material = SubResource("ParticleProcessMaterial_qdhcu")
 draw_pass_1 = SubResource("QuadMesh_ouwop")
 
 [node name="AuraGlow" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 mesh = SubResource("QuadMesh_62ywc")
 surface_material_override/0 = SubResource("ShaderMaterial_qdhcu")
 
