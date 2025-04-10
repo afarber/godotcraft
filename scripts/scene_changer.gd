@@ -21,18 +21,28 @@
 # SOFTWARE.
 
 extends Node
+# This script is autloaded as SceneChanger
 
 enum Keys {
 	MainMenu,
 	World
 }
 
-const SCENE_PACKED: Dictionary[int, PackedScene] = {
-	Keys.MainMenu : preload("res://scenes/main_menu.tscn"),
-	Keys.World : preload("res://scenes/world.tscn")
+const SCENE_PATHS: Dictionary[int, String] = {
+	Keys.MainMenu : "res://scenes/main_menu.tscn",
+	Keys.World : "res://scenes/world.tscn"
 }
 
-func change_scene(key:Keys) -> void:
-	get_tree().change_scene_to_packed(SCENE_PACKED[key])
-	var mouse_mode = Input.MOUSE_MODE_VISIBLE if key == Keys.MainMenu else Input.MOUSE_MODE_CAPTURED
-	Input.set_mouse_mode(mouse_mode)
+func _ready() -> void:
+	Signals.change_scene.connect(change_scene)
+
+func change_scene(key: Keys) -> void:
+	var scene_path: String = SCENE_PATHS[key]
+	var packed_scene = load(scene_path) as PackedScene
+	if packed_scene:
+		get_tree().change_scene_to_packed(packed_scene)
+
+		var mouse_mode = Input.MOUSE_MODE_VISIBLE if key == Keys.MainMenu else Input.MOUSE_MODE_CAPTURED
+		Input.set_mouse_mode(mouse_mode)
+	else:
+		printerr("Could not load scene at path: ", scene_path)

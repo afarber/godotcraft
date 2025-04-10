@@ -47,7 +47,7 @@ func _process(delta: float) -> void:
 # _input(), _unhandled_input() , _process() never run in editor
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
-		SceneManager.change_scene(SceneManager.Keys.MainMenu)
+		Signals.change_scene.emit(SceneChanger.Keys.MainMenu)
 	elif event.is_action_pressed("inventory_2d"):
 		panel_container.visible = !panel_container.visible
 

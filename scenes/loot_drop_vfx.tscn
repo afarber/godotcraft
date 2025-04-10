@@ -8,6 +8,16 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_62ywc"]
 albedo_color = Color(0.266575, 0.266575, 0.266575, 1)
 
+[sub_resource type="QuadMesh" id="QuadMesh_62ywc"]
+size = Vector2(2, 4)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qdhcu"]
+render_priority = 0
+shader = ExtResource("1_1mu4m")
+shader_parameter/main_color = Color(1, 0.117647, 0.117647, 1)
+shader_parameter/transparency_texture = ExtResource("2_21m0y")
+shader_parameter/blinking_speed = 8.0
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qdhcu"]
 transparency = 1
 shading_mode = 0
@@ -45,16 +55,6 @@ scale_curve = SubResource("CurveTexture_ouwop")
 color = Color(2, 0.5, 0.4, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_ouwop"]
-
-[sub_resource type="QuadMesh" id="QuadMesh_62ywc"]
-size = Vector2(2, 4)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qdhcu"]
-render_priority = 0
-shader = ExtResource("1_1mu4m")
-shader_parameter/main_color = Color(1, 0.117647, 0.117647, 1)
-shader_parameter/transparency_texture = ExtResource("2_21m0y")
-shader_parameter/blinking_speed = 8.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ouwop"]
 transparency = 1
@@ -123,18 +123,18 @@ visible = false
 mesh = SubResource("PlaneMesh_62ywc")
 surface_material_override/0 = SubResource("StandardMaterial3D_62ywc")
 
+[node name="AuraGlow" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+mesh = SubResource("QuadMesh_62ywc")
+surface_material_override/0 = SubResource("ShaderMaterial_qdhcu")
+
 [node name="SmallParticles" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 material_override = SubResource("StandardMaterial3D_qdhcu")
 amount = 10
 lifetime = 3.0
 process_material = SubResource("ParticleProcessMaterial_qdhcu")
 draw_pass_1 = SubResource("QuadMesh_ouwop")
-
-[node name="AuraGlow" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-mesh = SubResource("QuadMesh_62ywc")
-surface_material_override/0 = SubResource("ShaderMaterial_qdhcu")
 
 [node name="SpinningTrails" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

@@ -1,7 +1,7 @@
 [gd_resource type="VisualShader" load_steps=14 format=3 uid="uid://da8t8f31gpt8"]
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_bnepj"]
-size = Vector2(984, 282)
+size = Vector2(984, 285)
 title = "Blinking part"
 tint_color_enabled = true
 attached_nodes = PackedInt32Array(7, 5, 8, 6, 13)

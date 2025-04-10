@@ -21,7 +21,9 @@
 # SOFTWARE.
 
 extends Node
+# This script is autloaded as Signals
 
 signal selected_hotbar_item(index:int)
-signal spawn_scene(scene:PackedScene, tform:Transform3D)
+signal change_scene(key:SceneChanger.Keys)
 signal spawn_vfx(scene:PackedScene, tform:Transform3D, ttl:int)
+#signal spawn_scene(scene:PackedScene, tform:Transform3D)

@@ -21,7 +21,7 @@
 # SOFTWARE.
 
 extends Node
-class_name Spawner
+# This script is autloaded as VfxSpawner
 
 enum Keys {
 	CubeDestroyVfx,
@@ -34,13 +34,7 @@ const SCENE_PACKED: Dictionary[int, PackedScene] = {
 }
 
 func _ready() -> void:
-	Signals.spawn_scene.connect(spawn_scene)
-	Signals.spawn_vfx.connect(spawn_scene)
-
-func spawn_scene(scene:PackedScene, tform:Transform3D):
-	var obj := scene.instantiate()
-	obj.global_transform = tform
-	add_child(obj)
+	Signals.spawn_vfx.connect(spawn_vfx)
 
 func spawn_vfx(scene:PackedScene, tform:Transform3D, ttl:int = 0):
 	var vfx := scene.instantiate()

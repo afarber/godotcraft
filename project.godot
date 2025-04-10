@@ -18,7 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 Signals="*res://scripts/signals.gd"
-SceneManager="*res://scripts/scene_manager.gd"
+SceneChanger="*res://scripts/scene_changer.gd"
+VfxSpawner="*res://scripts/vfx_spawner.gd"
 
 [display]
 

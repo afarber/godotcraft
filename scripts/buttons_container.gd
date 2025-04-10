@@ -23,7 +23,7 @@
 extends VBoxContainer
 
 func _on_new_game_button_pressed() -> void:
-	SceneManager.change_scene(SceneManager.Keys.World)
+	Signals.change_scene.emit(SceneChanger.Keys.World)
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
