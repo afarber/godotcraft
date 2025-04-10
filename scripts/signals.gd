@@ -25,5 +25,5 @@ extends Node
 
 signal selected_hotbar_item(index:int)
 signal change_scene(key:SceneChanger.Keys)
-signal spawn_vfx(scene:PackedScene, tform:Transform3D, ttl:int)
+signal spawn_vfx(key:VfxSpawner.Keys, tform:Transform3D, ttl:int)
 #signal spawn_scene(scene:PackedScene, tform:Transform3D)

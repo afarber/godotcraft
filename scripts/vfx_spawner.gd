@@ -36,7 +36,9 @@ const SCENE_PACKED: Dictionary[int, PackedScene] = {
 func _ready() -> void:
 	Signals.spawn_vfx.connect(spawn_vfx)
 
-func spawn_vfx(scene:PackedScene, tform:Transform3D, ttl:int = 0):
+func spawn_vfx(key:Keys, tform:Transform3D, ttl:int = 0):
+	print("spawn_vfx key=", key, " tform=", tform, " ttl=", ttl)
+	var scene = SCENE_PACKED[key]
 	var vfx := scene.instantiate()
 	vfx.global_transform = tform
 	

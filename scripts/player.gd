@@ -119,10 +119,13 @@ func _physics_process(delta: float) -> void:
 			var pos = ray_cast.get_collision_point()
 			var normal = ray_cast.get_collision_normal()
 			var target = ray_cast.get_collider()
-			if target is GridMap and target.has_method("create_block"):
+			if target is GridMap and target.has_method("get_snapped_transform"):
+				var tform = target.get_snapped_transform(pos)
+				Signals.spawn_vfx.emit(VfxSpawner.Keys.CubeCreateVfx, tform, 1.0)
+			#if target is GridMap and target.has_method("create_block"):
 				# Find position outside the cube
-				var create_pos = pos + normal
-				target.create_block(create_pos, cell_item)
+			#	var create_pos = pos + normal
+			#	target.create_block(create_pos, cell_item)
 
 	# Handle translucent preview meshes
 	if ray_cast.is_colliding():
@@ -133,16 +136,16 @@ func _physics_process(delta: float) -> void:
 		create_preview.visible = false
 
 		# The green create preview mesh, display it aligned with the grid map or hide
-		if target is GridMap and target.has_method("create_block") and target.has_method("get_snapped_transform"):
-			var create_pos = pos + normal
-			create_preview.global_transform = target.get_snapped_transform(create_pos)
-			create_preview.visible = true
+		#if target is GridMap and target.has_method("create_block") and target.has_method("get_snapped_transform"):
+		#	var create_pos = pos + normal
+		#	create_preview.global_transform = target.get_snapped_transform(create_pos)
+		#	create_preview.visible = true
 
 		# The red destroy preview mesh, display it aligned with the grid map or hide
-		if target is GridMap and target.has_method("destroy_block") and target.has_method("get_snapped_transform"):
-			var destroy_pos = pos - normal
-			destroy_preview.global_transform = target.get_snapped_transform(destroy_pos)
-			destroy_preview.visible = true
+		#if target is GridMap and target.has_method("destroy_block") and target.has_method("get_snapped_transform"):
+		#	var destroy_pos = pos - normal
+		#	destroy_preview.global_transform = target.get_snapped_transform(destroy_pos)
+		#	destroy_preview.visible = true
 
 	move_and_slide()
 
