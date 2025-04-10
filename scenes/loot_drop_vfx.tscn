@@ -1,0 +1,147 @@
+[gd_scene load_steps=21 format=3 uid="uid://cre32shgisldh"]
+
+[ext_resource type="Shader" uid="uid://da8t8f31gpt8" path="res://shaders/blinking_aura.tres" id="1_1mu4m"]
+[ext_resource type="Texture2D" uid="uid://cw7bapjbap4ir" path="res://textures/T_Aura_8.png" id="2_ehbsa"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_62ywc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_62ywc"]
+albedo_color = Color(0.266575, 0.266575, 0.266575, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qdhcu"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_qdhcu"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.549451, 0.56535), -1.90363, -1.90363, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ouwop"]
+curve = SubResource("Curve_qdhcu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qdhcu"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 1.0
+emission_ring_radius = 0.3
+emission_ring_inner_radius = 0.2
+emission_ring_cone_angle = 90.0
+angle_min = -90.0
+angle_max = 90.0
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 0.4
+initial_velocity_max = 0.8
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_ouwop")
+color = Color(2, 0.5, 0.4, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_ouwop"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_62ywc"]
+size = Vector2(3, 5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qdhcu"]
+render_priority = 0
+shader = ExtResource("1_1mu4m")
+shader_parameter/main_color = Color(1, 0.117647, 0.117647, 1)
+shader_parameter/transparency_texture = ExtResource("2_ehbsa")
+shader_parameter/blinking_speed = 8.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ouwop"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+use_particle_trails = true
+
+[sub_resource type="Curve" id="Curve_vhbvq"]
+_data = [Vector2(0, 0.0417933), 0.0, 0.0, 0, 0, Vector2(0.267399, 1), 0.0, 0.0, 0, 0, Vector2(0.992674, 0.0220366), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_jbxkt"]
+curve = SubResource("Curve_vhbvq")
+
+[sub_resource type="Curve" id="Curve_ouwop"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 2.98023e-08), 0.0, 0.0, 0, 0, Vector2(1, 2.98023e-08), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_tw0xf"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_6eccb"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 2.98023e-08), 0.0, 0.0, 0, 0, Vector2(1, 2.98023e-08), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_vhbvq"]
+curve_x = SubResource("Curve_ouwop")
+curve_y = SubResource("Curve_tw0xf")
+curve_z = SubResource("Curve_6eccb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ouwop"]
+particle_flag_align_y = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.2
+emission_ring_radius = 0.6
+emission_ring_inner_radius = 0.4
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 0.2
+initial_velocity_max = 0.8
+orbit_velocity_min = 0.6
+orbit_velocity_max = 1.3
+orbit_velocity_curve = SubResource("CurveXYZTexture_vhbvq")
+gravity = Vector3(0, 0, 0)
+color = Color(0.8, 0.501961, 0.513726, 1)
+alpha_curve = SubResource("CurveTexture_jbxkt")
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_qdhcu"]
+shape = 0
+size = 0.08
+section_segments = 4
+
+[node name="LootDropVfx" type="Node3D"]
+
+[node name="floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+visible = false
+mesh = SubResource("PlaneMesh_62ywc")
+surface_material_override/0 = SubResource("StandardMaterial3D_62ywc")
+
+[node name="SmallParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_qdhcu")
+amount = 10
+lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_qdhcu")
+draw_pass_1 = SubResource("QuadMesh_ouwop")
+
+[node name="AuraGlow" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+mesh = SubResource("QuadMesh_62ywc")
+surface_material_override/0 = SubResource("ShaderMaterial_qdhcu")
+
+[node name="SpinningTrails" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = SubResource("StandardMaterial3D_ouwop")
+amount = 4
+lifetime = 3.0
+trail_enabled = true
+trail_lifetime = 0.7
+process_material = SubResource("ParticleProcessMaterial_ouwop")
+draw_pass_1 = SubResource("RibbonTrailMesh_qdhcu")

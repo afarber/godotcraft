@@ -1,7 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://cre32shgisldh"]
+[gd_scene load_steps=21 format=3 uid="uid://dvrtelw1v1ji5"]
 
-[ext_resource type="Shader" uid="uid://da8t8f31gpt8" path="res://shaders/blinking_aura.tres" id="1_p5nsk"]
-[ext_resource type="Texture2D" uid="uid://cw7bapjbap4ir" path="res://textures/T_Aura_8.png" id="2_qdhcu"]
+[ext_resource type="Shader" uid="uid://da8t8f31gpt8" path="res://shaders/blinking_aura.tres" id="1_l2265"]
+[ext_resource type="Texture2D" uid="uid://cw7bapjbap4ir" path="res://textures/T_Aura_8.png" id="2_0omcn"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_62ywc"]
 
@@ -51,9 +51,9 @@ size = Vector2(3, 5)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qdhcu"]
 render_priority = 0
-shader = ExtResource("1_p5nsk")
+shader = ExtResource("1_l2265")
 shader_parameter/main_color = Color(1, 0.117647, 0.117647, 1)
-shader_parameter/transparency_texture = ExtResource("2_qdhcu")
+shader_parameter/transparency_texture = ExtResource("2_0omcn")
 shader_parameter/blinking_speed = 8.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ouwop"]
@@ -115,7 +115,7 @@ shape = 0
 size = 0.08
 section_segments = 4
 
-[node name="VfxLootDrop" type="Node3D"]
+[node name="CubeDestroyVfx" type="Node3D"]
 
 [node name="floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)

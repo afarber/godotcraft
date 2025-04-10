@@ -42,6 +42,14 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 # The item selected in the grid map
 var cell_item := GridMap.INVALID_CELL_ITEM
 
+# The variables below are used to count mouse clicks on
+# a certain grid map position when creating/destroying cubes
+var destroy_grid_map_pos := Vector3i.MAX
+var create_grid_map_pos := Vector3i.MAX
+var destroy_hits_count := 0
+var create_hits_count := 0
+const MAX_HITS := 3
+
 @onready var head: Node3D = $Head
 @onready var main_camera: Camera3D = $Head/MainCamera
 @onready var ray_cast: RayCast3D = $Head/MainCamera/RayCast3D

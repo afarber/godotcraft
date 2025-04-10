@@ -21,7 +21,35 @@
 # SOFTWARE.
 
 extends Node
+class_name Spawner
 
-signal selected_hotbar_item(index:int)
-signal spawn_scene(scene:PackedScene, tform:Transform3D)
-signal spawn_vfx(scene:PackedScene, tform:Transform3D, ttl:int)
+enum Keys {
+	CubeDestroyVfx,
+	CubeCreateVfx
+}
+
+const SCENE_PACKED: Dictionary[int, PackedScene] = {
+	Keys.CubeDestroyVfx : preload("res://scenes/cube_destroy_vfx.tscn"),
+	Keys.CubeCreateVfx : preload("res://scenes/cube_create_vfx.tscn")
+}
+
+func _ready() -> void:
+	Signals.spawn_scene.connect(spawn_scene)
+	Signals.spawn_vfx.connect(spawn_scene)
+
+func spawn_scene(scene:PackedScene, tform:Transform3D):
+	var obj := scene.instantiate()
+	obj.global_transform = tform
+	add_child(obj)
+
+func spawn_vfx(scene:PackedScene, tform:Transform3D, ttl:int = 0):
+	var vfx := scene.instantiate()
+	vfx.global_transform = tform
+	
+	for c in vfx.get_children():
+		if c is GPUParticles3D:
+			c.emitting = true
+
+	# If time to live in seconds is set
+	if ttl > 0:
+		get_tree().create_timer(ttl, false).timeout.connect(vfx.queue_free)
