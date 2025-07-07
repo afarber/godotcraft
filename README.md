@@ -16,6 +16,8 @@ TODO:
 
 Use MIT-licensed [Pocket Godot](https://github.com/lukky-nl/Pocket-Godot) by Lukky
 
+Add [Godot 3D VFX & Effects collection](https://bukkbeek.itch.io/effectblocks) by Bukkbeek
+
 Add a skeleton model, then add LookAtModifier3D below its Skeleton3D
 
 
